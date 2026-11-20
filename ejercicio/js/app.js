@@ -224,6 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadCart();
     renderProducts();
     updateCartBadge();
+    initHeroSlider();
     setupEventListeners();
     setupDialogBackdropPolyfills();
 });
@@ -894,6 +895,107 @@ function setupDialogBackdropPolyfills() {
             });
         });
     }
+}
+
+// ============================================================================
+// HERO SLIDER DINÁMICO (3 SLIDES - TRANSICIÓN SUAVE CADA 6 SEGUNDOS)
+// ============================================================================
+let currentSlideIndex = 0;
+let sliderInterval = null;
+const SLIDE_DURATION = 6000; // 6 segundos de transición suave
+
+function initHeroSlider() {
+    const slider = document.getElementById("hero-slider");
+    const slides = document.querySelectorAll(".hero-slide");
+    const indicatorBtns = document.querySelectorAll(".indicator-num-btn");
+    const prevBtn = document.getElementById("slider-prev-btn");
+    const nextBtn = document.getElementById("slider-next-btn");
+
+    if (!slider || slides.length === 0) return;
+
+    function goToSlide(index) {
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
+
+        currentSlideIndex = index;
+
+        slides.forEach((slide, idx) => {
+            if (idx === currentSlideIndex) {
+                slide.classList.add("active");
+                slide.setAttribute("aria-hidden", "false");
+            } else {
+                slide.classList.remove("active");
+                slide.setAttribute("aria-hidden", "true");
+            }
+        });
+
+        indicatorBtns.forEach((btn, idx) => {
+            if (idx === currentSlideIndex) {
+                btn.classList.add("active");
+                btn.setAttribute("aria-selected", "true");
+            } else {
+                btn.classList.remove("active");
+                btn.setAttribute("aria-selected", "false");
+            }
+        });
+    }
+
+    function startAutoSlide() {
+        stopAutoSlide();
+        sliderInterval = setInterval(() => {
+            goToSlide(currentSlideIndex + 1);
+        }, SLIDE_DURATION);
+    }
+
+    function stopAutoSlide() {
+        if (sliderInterval) {
+            clearInterval(sliderInterval);
+            sliderInterval = null;
+        }
+    }
+
+    // Eventos en botones indicadores numéricos 01 / 02 / 03
+    indicatorBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const idx = parseInt(btn.getAttribute("data-slide-index"), 10);
+            goToSlide(idx);
+            startAutoSlide();
+        });
+    });
+
+    // Flechas anterior y siguiente
+    if (prevBtn) {
+        prevBtn.addEventListener("click", () => {
+            goToSlide(currentSlideIndex - 1);
+            startAutoSlide();
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener("click", () => {
+            goToSlide(currentSlideIndex + 1);
+            startAutoSlide();
+        });
+    }
+
+    // Pausar auto-avance al pasar el cursor para leer con calma
+    slider.addEventListener("mouseenter", stopAutoSlide);
+    slider.addEventListener("mouseleave", startAutoSlide);
+
+    // Navegación con teclado
+    document.addEventListener("keydown", (e) => {
+        if (e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")) return;
+        if (e.key === "ArrowLeft") {
+            goToSlide(currentSlideIndex - 1);
+            startAutoSlide();
+        } else if (e.key === "ArrowRight") {
+            goToSlide(currentSlideIndex + 1);
+            startAutoSlide();
+        }
+    });
+
+    // Iniciar pase automático
+    startAutoSlide();
 }
 
 // Toast flotante

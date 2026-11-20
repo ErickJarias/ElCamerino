@@ -71,9 +71,9 @@
          ========================================================================== -->
     <header class="main-navbar-sticky">
         <div class="editorial-container nav-wrapper">
-            <!-- Logotipo Oficial: Imagen 100% Idéntica al Logotipo Cargado -->
+            <!-- Logotipo Oficial: Imagen PNG 100% Transparente y Nítida -->
             <a href="index.html" class="brand-logo-official" aria-label="El Camerino Sports - Inicio">
-                <img src="img/logo-el-camerino.jpg" alt="El Camerino Sports Logo Oficial" class="brand-logo-img">
+                <img src="img/logo-el-camerino-transparent.png" alt="El Camerino Sports Logo Oficial" class="brand-logo-img">
             </a>
 
             <!-- Buscador en Vivo en el Centro -->
@@ -112,48 +112,132 @@
 
     <main>
         <!-- ==========================================================================
-             3. HERO SECTION DE ALTA CONVERSIÓN (90vh)
+             3. HERO SLIDER DINÁMICO DE ALTA CONVERSIÓN (90vh) - 3 SLIDES
              ========================================================================== -->
-        <section class="hero-conversion-section" aria-label="Sección Principal">
-            <!-- Fotografía de fondo nítida de alta resolución (jugador y balón en foco con alto contraste) -->
-            <img 
-                src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1920&auto=format&fit=crop&q=90" 
-                alt="Jugador de fútbol pateando el balón en la cancha con máxima intensidad" 
-                class="hero-media-bg"
-                loading="eager"
-            >
-            <!-- Degradado limpio para contraste tipográfico sin filtro verde opaco -->
-            <div class="hero-clean-gradient"></div>
-
-            <div class="editorial-container">
-                <div class="hero-content-box">
-                    <!-- Píldora Superior con Borde #A6FF00 -->
-                    <div class="pill-tag-volt">
-                        EL CAMERINO SPORTS // DONDE EMPIEZA EL JUEGO
-                    </div>
-
-                    <!-- Titular H1 Único y de Gran Impacto -->
-                    <h1 class="hero-main-h1">
-                        DOMINA CADA PARTIDO <br>
-                        DESDE <span class="text-volt">EL CAMERINO.</span>
-                    </h1>
-
-                    <!-- Subtítulo de Conversión -->
-                    <p class="hero-subtitle-desc">
-                        Guayos, zapatillas, medias antideslizantes de compresión, uniformes y balones reglamentarios. Envíos a todo Colombia.
-                    </p>
-
-                    <!-- CTAs de Conversión Primario y Secundario -->
-                    <div class="hero-ctas-group">
-                        <a href="#catalogo" class="btn btn-primary-volt">
-                            COMPRAR AHORA →
-                        </a>
-                        <a href="#catalogo" class="btn btn-secondary-outline">
-                            VER NOVEDADES
-                        </a>
+        <section class="hero-slider-container" id="hero-slider" aria-label="Colecciones Deportivas El Camerino">
+            <!-- Slide 1: Fútbol & Futsal (Alineación Inferior Izquierda) -->
+            <div class="hero-slide active" data-slide="0" aria-hidden="false">
+                <img 
+                    src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1920&auto=format&fit=crop&q=90" 
+                    alt="Jugador pateando el balón en la cancha con máxima intensidad" 
+                    class="hero-slide-bg"
+                    loading="eager"
+                >
+                <div class="hero-slide-overlay overlay-left"></div>
+                <div class="editorial-container">
+                    <div class="hero-slide-content slide-comp-left">
+                        <div class="pill-tag-volt">
+                            EL CAMERINO SPORTS // DONDE EMPIEZA EL JUEGO
+                        </div>
+                        <h1 class="hero-main-h1">
+                            DOMINA CADA PARTIDO <br>
+                            DESDE <span class="text-volt">EL CAMERINO.</span>
+                        </h1>
+                        <p class="hero-subtitle-desc">
+                            Guayos, zapatillas, medias antideslizantes de compresión, uniformes y balones reglamentarios. Envíos a todo Colombia.
+                        </p>
+                        <div class="hero-ctas-group">
+                            <a href="#catalogo" onclick="filterByCategory('futbol')" class="btn btn-primary-volt">
+                                COMPRAR AHORA →
+                            </a>
+                            <a href="#catalogo" class="btn btn-secondary-outline">
+                                VER NOVEDADES
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Slide 2: Gym & Training (Alineación Inferior Derecha - Ángulo Invertido) -->
+            <div class="hero-slide" data-slide="1" aria-hidden="true">
+                <img 
+                    src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1920&auto=format&fit=crop&q=90" 
+                    alt="Atleta en entrenamiento de alta intensidad con pesas e iluminación dramática" 
+                    class="hero-slide-bg"
+                    loading="lazy"
+                >
+                <div class="hero-slide-overlay overlay-right"></div>
+                <div class="editorial-container">
+                    <div class="hero-slide-content slide-comp-right">
+                        <div class="pill-tag-volt">
+                            ALTO RENDIMIENTO // GYM & TRAINING
+                        </div>
+                        <h2 class="hero-main-h1">
+                            SUPERA CADA LÍMITE <br>
+                            EN TU <span class="text-volt">ENTRENAMIENTO.</span>
+                        </h2>
+                        <p class="hero-subtitle-desc">
+                            Ropa de compresión, camisetas técnicas, shorts de alto desempeño y accesorios para gym. Envíos a todo Colombia.
+                        </p>
+                        <div class="hero-ctas-group">
+                            <a href="#catalogo" onclick="filterByCategory('training')" class="btn btn-primary-volt">
+                                COMPRAR AHORA →
+                            </a>
+                            <a href="#catalogo" class="btn btn-secondary-outline">
+                                VER NOVEDADES
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Running & Atletismo (Alineación Centrada / Diagonal de Impacto) -->
+            <div class="hero-slide" data-slide="2" aria-hidden="true">
+                <img 
+                    src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=1920&auto=format&fit=crop&q=90" 
+                    alt="Corredor en velocidad por la ciudad con iluminación de atardecer" 
+                    class="hero-slide-bg"
+                    loading="lazy"
+                >
+                <div class="hero-slide-overlay overlay-center"></div>
+                <div class="editorial-container">
+                    <div class="hero-slide-content slide-comp-center">
+                        <div class="pill-tag-volt">
+                            VELOCIDAD Y RESISTENCIA // RUNNING
+                        </div>
+                        <h2 class="hero-main-h1">
+                            CADA KILÓMETRO CUENTA <br>
+                            DESDE <span class="text-volt">EL INICIO.</span>
+                        </h2>
+                        <p class="hero-subtitle-desc">
+                            Zapatillas ligeras, medias de compresión técnica y prendas transpirables diseñadas para correr sin límites.
+                        </p>
+                        <div class="hero-ctas-group">
+                            <a href="#catalogo" onclick="filterByCategory('running')" class="btn btn-primary-volt">
+                                COMPRAR AHORA →
+                            </a>
+                            <a href="#catalogo" class="btn btn-secondary-outline">
+                                VER NOVEDADES
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controles Discretos: Indicadores Numéricos 01 / 02 / 03 y Flechas Minimalistas -->
+            <nav class="hero-slider-nav" aria-label="Controles del carrusel">
+                <div class="editorial-container hero-slider-nav-wrapper">
+                    <div class="hero-slider-indicators" role="tablist">
+                        <button type="button" class="indicator-num-btn active" data-slide-index="0" role="tab" aria-selected="true" aria-label="Ir a diapositiva 1 - Fútbol">
+                            <span class="indicator-num">01</span>
+                            <span class="indicator-bar"></span>
+                        </button>
+                        <button type="button" class="indicator-num-btn" data-slide-index="1" role="tab" aria-selected="false" aria-label="Ir a diapositiva 2 - Gym & Training">
+                            <span class="indicator-num">02</span>
+                            <span class="indicator-bar"></span>
+                        </button>
+                        <button type="button" class="indicator-num-btn" data-slide-index="2" role="tab" aria-selected="false" aria-label="Ir a diapositiva 3 - Running">
+                            <span class="indicator-num">03</span>
+                            <span class="indicator-bar"></span>
+                        </button>
+                    </div>
+
+                    <div class="hero-slider-arrows">
+                        <button type="button" class="slider-arrow-btn" id="slider-prev-btn" aria-label="Diapositiva anterior">‹</button>
+                        <button type="button" class="slider-arrow-btn" id="slider-next-btn" aria-label="Diapositiva siguiente">›</button>
+                    </div>
+                </div>
+            </nav>
         </section>
 
         <!-- ==========================================================================
@@ -324,7 +408,7 @@
                 <!-- Columna 1: Marca y Propósito -->
                 <div>
                     <a href="index.html" class="brand-logo-official" style="margin-bottom: 1rem;">
-                        <img src="img/logo-el-camerino.jpg" alt="El Camerino Sports Logo" class="brand-logo-img" style="height: 48px;">
+                        <img src="img/logo-el-camerino-transparent.png" alt="El Camerino Sports Logo Oficial" class="brand-logo-img" style="height: 48px;">
                     </a>
                     <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6; margin-top: 1rem;">
                         Tienda deportiva líder en Colombia. Especialistas en calzado de futsal, medias de agarre pro grip, uniformes y balones oficiales.
