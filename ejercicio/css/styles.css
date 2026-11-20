@@ -99,9 +99,9 @@ h1, h2, h3, h4, .brand-logo, .hero-tag, .product-price, .order-id-badge {
 }
 
 .header-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0.85rem 1.5rem;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding: 0.85rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -181,11 +181,28 @@ h1, h2, h3, h4, .brand-logo, .hero-tag, .product-price, .order-id-badge {
     font-size: 1.05rem;
     font-weight: 700;
     letter-spacing: 0.5px;
-    transition: var(--transition-fast);
+    position: relative;
+    padding-bottom: 3px;
+    transition: color 0.2s ease;
+}
+
+.nav-links-desktop a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--accent-primary);
+    transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .nav-links-desktop a:hover {
-    color: var(--accent-primary);
+    color: var(--text-primary);
+}
+
+.nav-links-desktop a:hover::after {
+    width: 100%;
 }
 
 .btn-admin-product {
@@ -247,20 +264,40 @@ h1, h2, h3, h4, .brand-logo, .hero-tag, .product-price, .order-id-badge {
 }
 
 /* ==========================================================================
-   HERO BANNER
+   HERO SECTION - EXACTAMENTE LA PRIMERA PANTALLA (ONE SECTION PER SCREEN)
    ========================================================================== */
 .hero-banner {
-    background: linear-gradient(180deg, rgba(6, 9, 14, 0.85) 0%, rgba(13, 19, 29, 0.95) 100%),
+    min-height: calc(100svh - 42px); /* Llena la primera pantalla completa descontando el notice superior */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(6, 9, 14, 0.88) 0%, rgba(13, 19, 29, 0.96) 100%),
                 url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1600&auto=format&fit=crop&q=80') center/cover no-repeat;
     border-bottom: 1px solid var(--border-color);
-    padding: 4.8rem 1.5rem;
+    padding: 3rem 2rem;
     text-align: center;
     position: relative;
+    box-sizing: border-box;
 }
 
 .hero-content {
-    max-width: 840px;
-    margin: 0 auto;
+    max-width: 860px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: heroEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes heroEnter {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-tag {
@@ -369,9 +406,9 @@ h1, h2, h3, h4, .brand-logo, .hero-tag, .product-price, .order-id-badge {
 }
 
 .benefits-grid {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: 2rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.5rem;
@@ -411,9 +448,9 @@ h1, h2, h3, h4, .brand-logo, .hero-tag, .product-price, .order-id-badge {
    SECCIÓN DE CATÁLOGO Y FILTROS
    ========================================================================== */
 .catalog-section {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 3rem 1.5rem;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding: 3.5rem 2rem;
     flex: 1;
     width: 100%;
 }
@@ -480,12 +517,12 @@ h1, h2, h3, h4, .brand-logo, .hero-tag, .product-price, .order-id-badge {
 }
 
 /* ==========================================================================
-   GRILLA DE PRODUCTOS (CARD HOVER UI/UX PRO MAX)
+   GRILLA DE PRODUCTOS (MICRO-INTERACCIONES DISCRETAS TASTE-SKILL)
    ========================================================================== */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.8rem;
+    gap: 1.75rem;
 }
 
 .product-card {
@@ -495,17 +532,18 @@ h1, h2, h3, h4, .brand-logo, .hero-tag, .product-price, .order-id-badge {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
-                box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-                border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     will-change: transform;
 }
 
+/* Card lift sutil de 3px y glow de contorno sobrio */
 .product-card:hover {
-    transform: translateY(-4px) scale(1.015);
+    transform: translateY(-3px);
     border-color: var(--accent-primary);
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(16, 185, 129, 0.15);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55), 0 0 16px rgba(16, 185, 129, 0.12);
 }
 
 .product-image-wrap {
@@ -523,11 +561,12 @@ h1, h2, h3, h4, .brand-logo, .hero-tag, .product-price, .order-id-badge {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Zoom de foto sobrio y medido (1.03-1.04) según regla de oro de Taste-Skill */
 .product-card:hover .product-image-wrap img {
-    transform: scale(1.08);
+    transform: scale(1.035);
 }
 
 .badge-stack {
@@ -1294,8 +1333,9 @@ dialog::backdrop {
 }
 
 .footer-container {
-    max-width: 1280px;
-    margin: 0 auto;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: 2rem;
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1.5fr;
     gap: 2.5rem;
@@ -1360,9 +1400,9 @@ dialog::backdrop {
 }
 
 .footer-bottom {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding-top: 1.5rem;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding: 1.5rem 2rem 0;
     border-top: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
