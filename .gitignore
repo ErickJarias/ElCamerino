@@ -1,0 +1,13 @@
+# Cloudflare Wrangler
+.wrangler/
+.wrangler/cache/
+
+# Dependencias y logs
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
