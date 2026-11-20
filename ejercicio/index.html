@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tienda deportiva líder en calzado de futsal, medias antideslizantes, uniformes de competición y accesorios deportivos de alto rendimiento.">
+    <title>EL CAMERINO 👕👟 • Tienda Deportiva y Calzado de Futsal</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Aviso Superior -->
+    <div class="top-bar-notice">
+        ⚡ ¡ENVÍO GRATIS en compras superiores a $70! Despachos express 24/48 horas 🚚
+    </div>
+
+    <!-- Header Principal -->
+    <header class="main-header">
+        <div class="header-container">
+            <a href="#" class="brand-logo" aria-label="Ir al inicio de El Camerino">
+                <span class="brand-icon">👕</span>
+                <span>EL <span class="brand-accent">CAMERINO</span></span>
+            </a>
+
+            <!-- Buscador en Vivo -->
+            <div class="header-search">
+                <span class="search-icon-inside" aria-hidden="true">🔍</span>
+                <input type="search" id="search-input" placeholder="Buscar zapatillas, medias, uniformes, balones..." aria-label="Buscar productos deportivos">
+            </div>
+
+            <!-- Navegación y Carrito -->
+            <div class="header-actions">
+                <ul class="nav-links-desktop">
+                    <li><a href="#catalogo">Catálogo</a></li>
+                    <li><a href="#beneficios">Beneficios</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+
+                <button type="button" class="btn-admin-product" id="open-add-product-btn" aria-label="Montar nuevo producto">
+                    <span>➕</span>
+                    <span class="btn-admin-text">Montar Producto</span>
+                </button>
+
+                <button type="button" class="cart-button" id="cart-toggle-btn" aria-label="Abrir carrito de compras">
+                    <span aria-hidden="true">🛒</span>
+                    <span>Carrito</span>
+                    <span class="cart-badge" id="cart-badge" style="display: none;">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Banner Promocional -->
+        <section class="hero-banner">
+            <div class="hero-content">
+                <span class="hero-tag">EL CAMERINO • DONDE EMPIEZA EL PARTIDO</span>
+                <h1 class="hero-title">EQUÍPATE ANTES DEL PITAZO INICIAL</h1>
+                <p class="hero-subtitle">
+                    Zapatillas profesionales de futsal, medias antideslizantes de compresión, uniformes completos y balones reglamentarios. Todo lo que necesitas para saltar a la cancha.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#catalogo" class="btn btn-primary btn-large">🔥 Explorar Catálogo</a>
+                    <button type="button" class="btn btn-secondary btn-large" onclick="document.getElementById('search-input').focus()">
+                        🔍 Buscar Producto
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Barra de Beneficios y Garantías -->
+        <section class="benefits-bar" id="beneficios" aria-label="Nuestras Garantías">
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🚚</div>
+                    <div class="benefit-text">
+                        <h4>Envíos Rápidos</h4>
+                        <p>Despachos a todo el país en 24 a 48 horas.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🛡️</div>
+                    <div class="benefit-text">
+                        <h4>100% Original</h4>
+                        <p>Garantía directa de marcas líderes mundiales.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">💳</div>
+                    <div class="benefit-text">
+                        <h4>Pago Seguro</h4>
+                        <p>Contraentrega, transferencia y tarjetas.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔄</div>
+                    <div class="benefit-text">
+                        <h4>Cambios Fáciles</h4>
+                        <p>Hasta 30 días para cambio de talla sin coste.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Catálogo Deportivo con Filtros -->
+        <section class="catalog-section" id="catalogo">
+            <div class="catalog-header">
+                <div class="catalog-title-row">
+                    <h2>Colección Deportiva Oficial</h2>
+                    <span class="products-count" id="products-count">Cargando productos...</span>
+                </div>
+
+                <!-- Filtros por categoría de tienda deportiva -->
+                <div class="category-filters" id="category-filters" role="group" aria-label="Filtro de categorías de productos">
+                    <!-- Los chips se inyectan dinámicamente desde app.js -->
+                </div>
+            </div>
+
+            <!-- Grilla interactiva de productos -->
+            <div class="products-grid" id="products-grid" aria-live="polite">
+                <!-- Se llena mediante JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer de la Tienda -->
+    <footer class="main-footer" id="contacto">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="#" class="brand-logo">
+                    <span class="brand-icon">👕</span>
+                    <span>EL <span class="brand-accent">CAMERINO</span></span>
+                </a>
+                <p>El Camerino: El vestuario donde te preparas para ganar. Especialistas en zapatillas de futsal, uniformes, medias pro grip y balones oficiales.</p>
+                <p>📍 Envíos nacionales • Atención personalizada</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Categorías</h4>
+                <ul>
+                    <li><a href="#catalogo" onclick="resetFilters()">Zapatillas Futsal</a></li>
+                    <li><a href="#catalogo">Medias Pro Grip</a></li>
+                    <li><a href="#catalogo">Uniformes y Ropa</a></li>
+                    <li><a href="#catalogo">Balones y Accesorios</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Atención al Cliente</h4>
+                <ul>
+                    <li><a href="#">Guía de Tallas</a></li>
+                    <li><a href="#">Política de Envíos</a></li>
+                    <li><a href="#">Cambios y Devoluciones</a></li>
+                    <li><a href="#">Preguntas Frecuentes</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col footer-newsletter">
+                <h4>Club El Camerino</h4>
+                <p>Suscríbete para recibir lanzamientos exclusivos y 10% de descuento en tu primer pedido.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('¡Bienvenido al Club El Camerino! 🎉'); this.reset();">
+                    <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo para newsletter">
+                    <button type="submit" class="btn btn-primary">Unirme</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 EL CAMERINO SPORTS. Todos los derechos reservados.</span>
+            <span>⚡ Donde se forja la victoria antes de entrar a la cancha.</span>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+         MODALES NATIVOS <dialog> CONFORME A MODERN WEB GUIDANCE
+         ========================================================================== -->
+
+    <!-- 1. Modal Carrito de Compras -->
+    <dialog id="cart-dialog" closedby="any" aria-labelledby="cart-title">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="cart-title">🛒 Carrito de Compras</h3>
+                <button type="button" class="btn-close-modal" id="close-cart-btn" aria-label="Cerrar carrito">✕</button>
+            </div>
+            <div class="modal-body" id="cart-items-container">
+                <!-- Se inyectan los productos del carrito con JS -->
+            </div>
+            <div class="modal-footer">
+                <div class="cart-summary-breakdown">
+                    <div class="summary-line">
+                        <span>Subtotal:</span>
+                        <strong id="cart-subtotal">$0.00</strong>
+                    </div>
+                    <div class="summary-line">
+                        <span>Envío:</span>
+                        <strong id="cart-shipping">$0.00</strong>
+                    </div>
+                    <div class="summary-line total">
+                        <span>Total:</span>
+                        <strong id="cart-total">$0.00</strong>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary btn-large" id="checkout-btn">
+                    Proceder al Pago 💳
+                </button>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- 2. Modal Vista Rápida del Producto (Quick View) -->
+    <dialog id="quickview-dialog" closedby="any" aria-labelledby="quickview-title">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="quickview-title">Detalles del Producto</h3>
+                <button type="button" class="btn-close-modal" id="close-quickview-btn" aria-label="Cerrar vista rápida">✕</button>
+            </div>
+            <div class="modal-body" id="quickview-content">
+                <!-- Se inyecta la información detallada con JS -->
+            </div>
+        </div>
+    </dialog>
+
+    <!-- 3. Modal de Checkout / Formulario de Envío y Pago -->
+    <dialog id="checkout-dialog" closedby="any" aria-labelledby="checkout-title">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="checkout-title">Finalizar Pedido</h3>
+                <button type="button" class="btn-close-modal" id="close-checkout-btn" aria-label="Cerrar checkout">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="checkout-summary-box">
+                    <h4>Resumen del Pedido</h4>
+                    <div class="checkout-items-list" id="checkout-items-list">
+                        <!-- Ítems del checkout -->
+                    </div>
+                    <div class="summary-line">
+                        <span>Subtotal:</span>
+                        <span id="checkout-subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-line">
+                        <span>Envío:</span>
+                        <span id="checkout-shipping">$0.00</span>
+                    </div>
+                    <div class="summary-line total">
+                        <span>Total a Pagar:</span>
+                        <strong id="checkout-total">$0.00</strong>
+                    </div>
+                </div>
+
+                <form id="checkout-form">
+                    <div class="checkout-form-grid">
+                        <div class="form-group full-width">
+                            <label for="nombre">Nombre y Apellido *</label>
+                            <input type="text" id="nombre" name="nombre" required placeholder="Ej: Carlos Gómez">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono / WhatsApp *</label>
+                            <input type="tel" id="telefono" name="telefono" required placeholder="Ej: +57 300 123 4567">
+                        </div>
+                        <div class="form-group">
+                            <label for="ciudad">Ciudad *</label>
+                            <input type="text" id="ciudad" name="ciudad" required placeholder="Ej: Bogotá, Medellín, Cali...">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="direccion">Dirección de Entrega *</label>
+                            <input type="text" id="direccion" name="direccion" required placeholder="Calle, Carrera, Número, Apto">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="metodoPago">Método de Pago *</label>
+                            <select id="metodoPago" name="metodoPago" required>
+                                <option value="Pago Contraentrega (Paga al recibir)">💵 Pago Contraentrega (Pagas al recibir)</option>
+                                <option value="Transferencia Bancaria / Nequi / Daviplata / Bizum">📱 Transferencia Directa (Nequi / Bancolombia / Bizum)</option>
+                                <option value="Tarjeta Débito / Crédito">💳 Tarjeta Débito / Crédito</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="notas">Instrucciones o notas adicionales (opcional)</label>
+                            <textarea id="notas" name="notas" rows="2" placeholder="Ej: Timbre 302, dejar en portería si no estoy..."></textarea>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1.5rem;">
+                        <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">
+                            ✅ Confirmar y Enviar Pedido
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- 4. Modal Confirmación de Pedido Exitoso -->
+    <dialog id="order-success-dialog" closedby="any" aria-labelledby="order-success-title">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="order-success-title">¡Pedido Confirmado! 🎉</h3>
+                <button type="button" class="btn-close-modal" id="close-order-success-btn" aria-label="Cerrar modal de éxito">✕</button>
+            </div>
+            <div class="modal-body">
+                <span class="order-success-icon">⚽⚡</span>
+                <p>¡Gracias por tu compra en <strong>EL CAMERINO</strong>! Tu pedido ya está registrado en nuestro sistema.</p>
+                
+                <div id="order-success-details">
+                    <!-- Se inyectan los detalles con JS -->
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem;">
+                    <a id="whatsapp-order-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn whatsapp-confirm-btn btn-large">
+                        💬 Notificar pedido por WhatsApp
+                    </a>
+                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('order-success-dialog').close()">
+                        Seguir Comprando
+                    </button>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- 5. Modal Montar Nuevo Producto (Panel de Gestión) -->
+    <dialog id="add-product-dialog" closedby="any" aria-labelledby="add-product-title">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="add-product-title">📦 Montar Nuevo Producto</h3>
+                <button type="button" class="btn-close-modal" id="close-add-product-btn" aria-label="Cerrar modal">✕</button>
+            </div>
+            <div class="modal-body">
+                <form id="add-product-form">
+                    <div class="checkout-form-grid">
+                        <div class="form-group full-width">
+                            <label for="prod-nombre">Nombre del Producto *</label>
+                            <input type="text" id="prod-nombre" name="nombre" required placeholder="Ej: Nike Phantom GX Pro Futsal">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prod-categoria">Categoría *</label>
+                            <select id="prod-categoria" name="categoria" required>
+                                <option value="zapatillas">👟 Zapatillas de Futsal</option>
+                                <option value="medias">🧦 Medias y Antideslizantes</option>
+                                <option value="uniformes">👕 Uniformes y Ropa</option>
+                                <option value="accesorios">⚽ Balones y Accesorios</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prod-marca">Marca *</label>
+                            <input type="text" id="prod-marca" name="marca" required placeholder="Ej: Nike, Adidas, El Camerino, Joma">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prod-precio">Precio de Venta ($) *</label>
+                            <input type="number" id="prod-precio" name="precio" step="0.01" min="0" required placeholder="Ej: 85.00">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prod-precio-anterior">Precio Anterior / Oferta ($)</label>
+                            <input type="number" id="prod-precio-anterior" name="precioAnterior" step="0.01" min="0" placeholder="Ej: 110.00 (opcional)">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="prod-tallas">Tallas Disponibles (separadas por coma) *</label>
+                            <input type="text" id="prod-tallas" name="tallas" required placeholder="Ej: 38, 39, 40, 41, 42 o S, M, L, XL">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Foto del Producto *</label>
+                            <div class="image-upload-options">
+                                <input type="file" id="prod-file-input" accept="image/*" class="file-custom-input">
+                                <span class="or-divider">o ingresa una URL:</span>
+                                <input type="url" id="prod-url-input" name="imagenUrl" placeholder="https://ejemplo.com/foto.jpg">
+                            </div>
+                            <div id="image-preview-container" class="image-preview-container" style="display: none;">
+                                <img id="image-preview-img" src="" alt="Vista previa" class="image-preview-thumb">
+                                <span id="image-preview-text">Imagen lista para subir</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prod-badge">Etiqueta Especial</label>
+                            <select id="prod-badge" name="badge">
+                                <option value="">(Ninguna)</option>
+                                <option value="Nuevo">Nuevo</option>
+                                <option value="Top Ventas">Top Ventas</option>
+                                <option value="Oferta">Oferta</option>
+                                <option value="Edición Especial">Edición Especial</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="prod-desc">Descripción Técnica</label>
+                            <textarea id="prod-desc" name="descripcion" rows="3" placeholder="Detalles de materiales, suela, ajuste, amortiguación..."></textarea>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                        <button type="submit" class="btn btn-primary btn-large" style="flex: 1;">
+                            🚀 Publicar Producto en la Tienda
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Script de la aplicación -->
+    <script src="js/app.js"></script>
+</body>
+</html>
