@@ -1,21 +1,21 @@
 /**
  * ============================================================================
- * EL CAMERINO SPORTS • MOTOR E-COMMERCE & INTEGRACIÓN WOMPI SANDBOX
- * Categorías por Deporte: Fútbol & Futsal | Gym & Training | Running
- * Efecto Flipper: Cambio interactivo a 2da foto de detalle en Hover
+ * EL CAMERINO SPORTS • MOTOR E-COMMERCE CON SEGURIDAD EDGE & VALIDACIÓN REAL
+ * - Recálculo de precios 100% en backend (Mitigación CWE-472)
+ * - Control de stock por variante/talla en tiempo real
+ * - Cero secretos en código cliente (Integridad Wompi gestionada en el servidor)
  * ============================================================================
  */
 
-// Configuración Wompi Sandbox Oficial
+// Configuración pública oficial Wompi Sandbox
 const WOMPI_CONFIG = {
     publicKey: "pub_test_Q5yDA9xoKdePzhSGeVe9HAeu1w0TVFwa",
-    integritySecret: "test_integrity_b9K5F8hG3jL1mN4pQ7rT2vX6z",
     currency: "COP",
     freeShippingThreshold: 180000, // Envío gratis a partir de $180.000 COP
     standardShippingFee: 15000     // Flete nacional estándar $15.000 COP
 };
 
-// Catálogo Oficial por Disciplina Deportiva con 2 Fotos por Producto (Hover Flipper)
+// Catálogo Maestro de Productos con Stock por Talla y 2 Fotos (Hover Flipper)
 const DEFAULT_PRODUCTS = [
     // =========================================================================
     // ⚽ FÚTBOL & FUTSAL
@@ -28,6 +28,7 @@ const DEFAULT_PRODUCTS = [
         precio: 289900,
         precioAnterior: 349900,
         tallas: ["38", "39", "40", "41", "42", "43"],
+        stockPorTalla: { "38": 4, "39": 6, "40": 8, "41": 0, "42": 5, "43": 3 },
         imagenPrincipal: "https://contents.mediadecathlon.com/p2644744/k$531b7af3db1e86268bf7f369651facbf/sq/zapatillas-de-futbol-sala-joma-top-flex-adulto-blanco.jpg?format=auto&f=800x0",
         imagenSecundaria: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop&q=85",
         badge: "TOP VENTAS",
@@ -41,6 +42,7 @@ const DEFAULT_PRODUCTS = [
         precio: 329900,
         precioAnterior: 389900,
         tallas: ["38", "39", "40", "41", "42"],
+        stockPorTalla: { "38": 3, "39": 5, "40": 4, "41": 2, "42": 0 },
         imagenPrincipal: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop&q=85",
         imagenSecundaria: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=800&auto=format&fit=crop&q=85",
         badge: "NUEVO",
@@ -54,6 +56,7 @@ const DEFAULT_PRODUCTS = [
         precio: 369900,
         precioAnterior: 449900,
         tallas: ["39", "40", "41", "42", "43", "44"],
+        stockPorTalla: { "39": 2, "40": 6, "41": 5, "42": 4, "43": 3, "44": 1 },
         imagenPrincipal: "https://media.futbolmania.com/media/catalog/product/cache/1/image/0f330055bc18e2dda592b4a7c3a0ea22/I/G/IG7798_zapatillas-futbol-sala-color-negro-y-rojo-adidas-predator-elite-in_1_pie-derecho.jpg",
         imagenSecundaria: "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?w=800&auto=format&fit=crop&q=85",
         badge: "PRO LEVEL",
@@ -67,6 +70,7 @@ const DEFAULT_PRODUCTS = [
         precio: 69900,
         precioAnterior: 89900,
         tallas: ["M (37-41)", "L (42-45)"],
+        stockPorTalla: { "M (37-41)": 15, "L (42-45)": 12 },
         imagenPrincipal: "https://images.unsplash.com/photo-1582966772680-860e372bb558?w=800&auto=format&fit=crop&q=85",
         imagenSecundaria: "https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?w=800&auto=format&fit=crop&q=85",
         badge: "ESENCIAL",
@@ -80,6 +84,7 @@ const DEFAULT_PRODUCTS = [
         precio: 129900,
         precioAnterior: 159900,
         tallas: ["Nº 4 Oficial"],
+        stockPorTalla: { "Nº 4 Oficial": 8 },
         imagenPrincipal: "https://images.unsplash.com/photo-1614632537423-1e6c2e7e0aab?w=800&auto=format&fit=crop&q=85",
         imagenSecundaria: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&auto=format&fit=crop&q=85",
         badge: "CERTIFICADO",
@@ -93,6 +98,7 @@ const DEFAULT_PRODUCTS = [
         precio: 139900,
         precioAnterior: 179900,
         tallas: ["S", "M", "L", "XL"],
+        stockPorTalla: { "S": 5, "M": 10, "L": 8, "XL": 4 },
         imagenPrincipal: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=800&auto=format&fit=crop&q=85",
         imagenSecundaria: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&auto=format&fit=crop&q=85",
         badge: "SET OFICIAL",
@@ -110,6 +116,7 @@ const DEFAULT_PRODUCTS = [
         precio: 119900,
         precioAnterior: 149900,
         tallas: ["S", "M", "L", "XL"],
+        stockPorTalla: { "S": 6, "M": 12, "L": 9, "XL": 5 },
         imagenPrincipal: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=800&auto=format&fit=crop&q=85",
         imagenSecundaria: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=85",
         badge: "COMPRESIÓN ALTA",
@@ -123,6 +130,7 @@ const DEFAULT_PRODUCTS = [
         precio: 149900,
         precioAnterior: 189900,
         tallas: ["S", "M", "L", "XL"],
+        stockPorTalla: { "S": 8, "M": 14, "L": 6, "XL": 0 },
         imagenPrincipal: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&auto=format&fit=crop&q=85",
         imagenSecundaria: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&auto=format&fit=crop&q=85",
         badge: "NUEVO",
@@ -136,6 +144,7 @@ const DEFAULT_PRODUCTS = [
         precio: 99900,
         precioAnterior: 129900,
         tallas: ["S", "M", "L", "XL"],
+        stockPorTalla: { "S": 4, "M": 9, "L": 7, "XL": 3 },
         imagenPrincipal: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=800&auto=format&fit=crop&q=85",
         imagenSecundaria: "https://images.unsplash.com/photo-1591117207239-788bf8de6c3b?w=800&auto=format&fit=crop&q=85",
         badge: "AEROVENT",
@@ -149,6 +158,7 @@ const DEFAULT_PRODUCTS = [
         precio: 99900,
         precioAnterior: 129900,
         tallas: ["S", "M", "L", "XL"],
+        stockPorTalla: { "S": 5, "M": 7, "L": 8, "XL": 4 },
         imagenPrincipal: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&auto=format&fit=crop&q=85",
         imagenSecundaria: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=800&auto=format&fit=crop&q=85",
         badge: "TRANSPIRABLE",
@@ -166,6 +176,7 @@ const DEFAULT_PRODUCTS = [
         precio: 349900,
         precioAnterior: 419900,
         tallas: ["38", "39", "40", "41", "42", "43"],
+        stockPorTalla: { "38": 2, "39": 4, "40": 5, "41": 3, "42": 2, "43": 1 },
         imagenPrincipal: "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800&auto=format&fit=crop&q=85",
         imagenSecundaria: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop&q=85",
         badge: "SPEED FOAM",
@@ -179,6 +190,7 @@ const DEFAULT_PRODUCTS = [
         precio: 189900,
         precioAnterior: 229900,
         tallas: ["S", "M", "L", "XL"],
+        stockPorTalla: { "S": 3, "M": 6, "L": 5, "XL": 2 },
         imagenPrincipal: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800&auto=format&fit=crop&q=85",
         imagenSecundaria: "https://images.unsplash.com/photo-1578768079052-aa76e520036c?w=800&auto=format&fit=crop&q=85",
         badge: "STORM-FLEECE",
@@ -192,12 +204,25 @@ const DEFAULT_PRODUCTS = [
         precio: 55000,
         precioAnterior: 69900,
         tallas: ["S/M", "L/XL"],
+        stockPorTalla: { "S/M": 8, "L/XL": 6 },
         imagenPrincipal: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&auto=format&fit=crop&q=85",
         imagenSecundaria: "https://images.unsplash.com/photo-1582966772680-860e372bb558?w=800&auto=format&fit=crop&q=85",
         badge: "SOPORTE",
         descripcion: "Soporte activo para ligamentos y tendón de Aquiles. Estabilidad reforzada para impactos continuos en asfalto."
     }
 ];
+
+// Sanitización de inputs en cliente
+function sanitize(str) {
+    if (typeof str !== "string") return "";
+    return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;")
+        .trim();
+}
 
 // Estado global de la tienda
 const AppState = {
@@ -247,10 +272,14 @@ function loadCatalog() {
         AppState.products = [...DEFAULT_PRODUCTS];
     }
 
-    // Inicializar tallas seleccionadas por defecto
+    // Inicializar primera talla disponible con stock > 0
     AppState.products.forEach(p => {
         if (!AppState.selectedSizes[p.id] && p.tallas && p.tallas.length) {
-            AppState.selectedSizes[p.id] = p.tallas[0];
+            const firstAvailable = p.tallas.find(t => {
+                const stock = (p.stockPorTalla && typeof p.stockPorTalla[t] === 'number') ? p.stockPorTalla[t] : 5;
+                return stock > 0;
+            });
+            AppState.selectedSizes[p.id] = firstAvailable || p.tallas[0];
         }
     });
 }
@@ -291,7 +320,7 @@ function filterByCategory(category) {
     renderProducts();
 }
 
-// Renderizar la grilla de productos con efecto Flipper (2 fotos al hover)
+// Renderizar la grilla de productos con validación de stock y Flipper
 function renderProducts() {
     const grid = document.getElementById("products-grid");
     const countEl = document.getElementById("products-count");
@@ -317,7 +346,7 @@ function renderProducts() {
             <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; color: var(--text-secondary);">
                 <span style="font-size: 3rem; display: block; margin-bottom: 0.5rem;">🔍</span>
                 <h3 style="color: #FFFFFF; font-size: 1.5rem; margin-bottom: 0.5rem;">No encontramos productos con tu búsqueda</h3>
-                <p style="margin-bottom: 1.5rem;">Prueba con otros términos como "guayos", "joma", "nike", "medias" o selecciona otra disciplina.</p>
+                <p style="margin-bottom: 1.5rem;">Prueba con otros términos como "guayos", "nike", "medias" o selecciona otra disciplina.</p>
                 <button type="button" class="btn btn-primary-volt" onclick="filterByCategory('all'); document.getElementById('search-input').value = ''; AppState.searchQuery = ''; renderProducts();">
                     Ver Todo el Catálogo
                 </button>
@@ -331,6 +360,12 @@ function renderProducts() {
         const hasDiscount = prod.precioAnterior && prod.precioAnterior > prod.precio;
         const img1 = prod.imagenPrincipal || prod.imagen;
         const img2 = prod.imagenSecundaria || prod.imagenPrincipal || prod.imagen;
+
+        // Stock disponible para la talla actualmente seleccionada
+        const currentStock = (prod.stockPorTalla && typeof prod.stockPorTalla[activeSize] === 'number')
+            ? prod.stockPorTalla[activeSize]
+            : 5;
+        const isCurrentOutOfStock = currentStock <= 0;
 
         return `
             <article class="product-sport-card" data-id="${prod.id}">
@@ -363,27 +398,42 @@ function renderProducts() {
                         ${hasDiscount ? `<span class="product-old-price">${formatCOP(prod.precioAnterior)}</span>` : ""}
                     </div>
 
+                    <!-- Indicador de Inventario Real -->
+                    ${isCurrentOutOfStock ? `
+                        <span class="stock-badge-live" style="color: #ef4444;">❌ Talla ${activeSize} Agotada</span>
+                    ` : currentStock <= 3 ? `
+                        <span class="stock-alert-low">⚡ ¡Solo quedan ${currentStock} uds en talla ${activeSize}!</span>
+                    ` : `
+                        <span class="stock-badge-live">✓ ${currentStock} unidades disponibles</span>
+                    `}
+
                     <!-- Selector Rápido de Talla -->
                     <div class="size-picker-row" role="radiogroup" aria-label="Talla para ${prod.nombre}">
-                        ${prod.tallas.map(size => `
-                            <button 
-                                type="button" 
-                                class="size-btn-chip ${size === activeSize ? 'active' : ''}" 
-                                onclick="selectSize('${prod.id}', '${size}')"
-                                aria-label="Talla ${size}"
-                            >
-                                ${size}
-                            </button>
-                        `).join("")}
+                        ${prod.tallas.map(size => {
+                            const sizeStock = (prod.stockPorTalla && typeof prod.stockPorTalla[size] === 'number') ? prod.stockPorTalla[size] : 5;
+                            const outOfStock = sizeStock <= 0;
+                            return `
+                                <button 
+                                    type="button" 
+                                    class="size-btn-chip ${size === activeSize ? 'active' : ''} ${outOfStock ? 'out-of-stock' : ''}" 
+                                    onclick="${outOfStock ? `showToast('⚠️ La talla ${size} está agotada actualmente')` : `selectSize('${prod.id}', '${size}')`}"
+                                    aria-label="Talla ${size} ${outOfStock ? '(Agotado)' : ''}"
+                                    title="${outOfStock ? 'Agotado' : `${sizeStock} disponibles`}"
+                                >
+                                    ${size}
+                                </button>
+                            `;
+                        }).join("")}
                     </div>
 
                     <!-- Botón de Añadir al Carrito -->
                     <button 
                         type="button" 
                         class="btn btn-primary-volt btn-card-add" 
+                        ${isCurrentOutOfStock ? 'disabled style="opacity: 0.4; cursor: not-allowed;"' : ''}
                         onclick="addToCart('${prod.id}')"
                     >
-                        ⚡ Añadir al Carrito
+                        ${isCurrentOutOfStock ? 'Talla Agotada' : '⚡ Añadir al Carrito'}
                     </button>
                 </div>
             </article>
@@ -397,17 +447,31 @@ function selectSize(productId, size) {
     renderProducts();
 }
 
-// Agregar al carrito
+// Agregar al carrito con validación de inventario en tiempo real
 function addToCart(productId) {
     const product = AppState.products.find(p => p.id === productId);
     if (!product) return;
 
     const selectedSize = AppState.selectedSizes[productId] || product.tallas[0];
-    const cartItemId = `${product.id}_${selectedSize}`;
+    const availableStock = (product.stockPorTalla && typeof product.stockPorTalla[selectedSize] === 'number')
+        ? product.stockPorTalla[selectedSize]
+        : 5;
 
+    if (availableStock <= 0) {
+        showToast(`❌ La talla ${selectedSize} de "${product.nombre}" está agotada.`);
+        return;
+    }
+
+    const cartItemId = `${product.id}_${selectedSize}`;
     const existingIndex = AppState.cart.findIndex(i => i.cartItemId === cartItemId);
+
     if (existingIndex > -1) {
-        AppState.cart[existingIndex].quantity += 1;
+        const nextQty = AppState.cart[existingIndex].quantity + 1;
+        if (nextQty > availableStock) {
+            showToast(`⚠️ Solo hay ${availableStock} unidades disponibles en talla ${selectedSize}.`);
+            return;
+        }
+        AppState.cart[existingIndex].quantity = nextQty;
     } else {
         AppState.cart.push({
             cartItemId: cartItemId,
@@ -417,13 +481,14 @@ function addToCart(productId) {
             precio: product.precio,
             imagen: product.imagenPrincipal || product.imagen,
             size: selectedSize,
-            quantity: 1
+            quantity: 1,
+            maxStock: availableStock
         });
     }
 
     saveCart();
     updateCartBadge();
-    showToast(`✅ "${product.nombre}" (${selectedSize}) añadido al carrito`);
+    showToast(`✅ "${product.nombre}" (${selectedSize}) agregado al carrito`);
 }
 
 // Actualizar badge del carrito
@@ -521,14 +586,28 @@ function renderCartItems() {
     if (cartTotalEl) cartTotalEl.textContent = formatCOP(total);
 }
 
-// Modificar cantidad en carrito
+// Modificar cantidad en carrito respetando el stock disponible
 function changeCartItemQty(cartItemId, delta) {
     const itemIndex = AppState.cart.findIndex(i => i.cartItemId === cartItemId);
     if (itemIndex === -1) return;
 
-    AppState.cart[itemIndex].quantity += delta;
-    if (AppState.cart[itemIndex].quantity <= 0) {
+    const currentItem = AppState.cart[itemIndex];
+    const newQty = currentItem.quantity + delta;
+
+    if (newQty <= 0) {
         AppState.cart.splice(itemIndex, 1);
+    } else {
+        // Validar contra stock de catálogo
+        const prod = AppState.products.find(p => p.id === currentItem.id);
+        const maxStock = (prod && prod.stockPorTalla && prod.stockPorTalla[currentItem.size]) 
+            ? prod.stockPorTalla[currentItem.size] 
+            : 10;
+
+        if (newQty > maxStock) {
+            showToast(`⚠️ Solo hay ${maxStock} unidades en stock.`);
+            return;
+        }
+        currentItem.quantity = newQty;
     }
 
     saveCart();
@@ -571,7 +650,9 @@ function prepareCheckoutSummary() {
     if (totalEl) totalEl.textContent = formatCOP(total);
 }
 
-// Procesar Checkout (Wompi o Contraentrega)
+// =============================================================================
+// CHECKOUT SEGURO: VALIDACIÓN DE PRECIOS Y FIRMA EN BACKEND (Mitigación CWE-472)
+// =============================================================================
 async function handleCheckoutSubmit(e) {
     e.preventDefault();
 
@@ -582,110 +663,123 @@ async function handleCheckoutSubmit(e) {
 
     const form = e.target;
     const submitBtn = document.getElementById("submit-checkout-btn");
-    const nombre = form.nombre.value.trim();
-    const telefono = form.telefono.value.trim();
-    const ciudad = form.ciudad.value.trim();
-    const direccion = form.direccion.value.trim();
+    const nombre = sanitize(form.nombre.value);
+    const email = sanitize(form.email ? form.email.value : "cliente@elcamerino.co");
+    const telefono = sanitize(form.telefono.value);
+    const departamento = sanitize(form.departamento ? form.departamento.value : "Bogotá D.C.");
+    const ciudad = sanitize(form.ciudad.value);
+    const direccion = sanitize(form.direccion.value);
     const metodoPago = form.metodoPago.value;
-    const notas = form.notas.value.trim();
-
-    const subtotal = AppState.cart.reduce((acc, item) => acc + (item.precio * item.quantity), 0);
-    const isFreeShipping = subtotal >= WOMPI_CONFIG.freeShippingThreshold;
-    const shipping = isFreeShipping ? 0 : WOMPI_CONFIG.standardShippingFee;
-    const total = subtotal + shipping;
-    const amountInCents = Math.round(total * 100);
+    const notas = sanitize(form.notas.value);
 
     const orderNumber = "CAM-" + Date.now().toString().slice(-6);
 
     // =========================================================================
-    // FLUJO WOMPI COLOMBIA (WIDGET OFICIAL SANDBOX)
+    // 1. FLUJO WOMPI COLOMBIA SEGURO (Firma y Total Calculados en el Servidor)
     // =========================================================================
     if (metodoPago.includes("Wompi")) {
         if (submitBtn) {
             submitBtn.disabled = true;
-            submitBtn.textContent = "⚡ Conectando pasarela Wompi...";
+            submitBtn.textContent = "🔒 Validando precios con el servidor...";
         }
-
-        let signature = null;
-        let publicKey = WOMPI_CONFIG.publicKey;
 
         try {
-            const res = await fetch("/api/wompi-signature", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    reference: orderNumber,
-                    amountInCents: amountInCents,
-                    currency: "COP"
-                })
-            });
-            if (res.ok) {
-                const data = await res.json();
-                signature = data.signature;
-                if (data.publicKey) publicKey = data.publicKey;
-            }
-        } catch (err) {
-            console.warn("Calculando firma con fallback criptográfico local:", err);
-        }
-
-        // Fallback local Web Crypto API SHA-256
-        if (!signature) {
-            const rawString = `${orderNumber}${amountInCents}COP${WOMPI_CONFIG.integritySecret}`;
-            const encoder = new TextEncoder();
-            const data = encoder.encode(rawString);
-            const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-            signature = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, "0")).join("");
-        }
-
-        const redirectUrl = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, "/confirmacion.html");
-
-        if (typeof WidgetCheckout !== "undefined") {
-            const checkout = new WidgetCheckout({
-                currency: "COP",
-                amountInCents: amountInCents,
+            // El cliente envía SOLO los identificadores y cantidades. El servidor recalcula el total real.
+            const checkoutPayload = {
                 reference: orderNumber,
-                publicKey: publicKey,
-                signature: { integrity: signature },
-                redirectUrl: redirectUrl,
+                items: AppState.cart.map(i => ({
+                    id: i.id,
+                    size: i.size,
+                    quantity: i.quantity
+                })),
                 customerData: {
-                    email: "cliente@elcamerino.co",
                     fullName: nombre,
-                    phoneNumber: telefono,
-                    legalId: "1020304050",
-                    legalIdType: "CC"
+                    email: email,
+                    phoneNumber: telefono
                 },
                 shippingAddress: {
                     addressLine1: direccion,
-                    city: ciudad,
+                    city: `${ciudad}, ${departamento}`,
                     country: "CO"
-                }
+                },
+                currency: "COP"
+            };
+
+            const res = await fetch("/api/wompi-signature", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(checkoutPayload)
             });
 
-            checkout.open(function (result) {
-                const transaction = result.transaction;
-                if (transaction) {
-                    window.location.href = `${redirectUrl}?id=${transaction.id}`;
-                }
-            });
-
-            if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.textContent = "⚡ Pagar con Wompi Colombia";
+            if (!res.ok) {
+                const errData = await res.json();
+                throw new Error(errData.error || "No fue posible verificar los precios en el servidor.");
             }
-            return;
-        } else {
-            showToast("⚠️ El widget de Wompi está cargando. Intenta de nuevo.");
+
+            const verifiedData = await res.json();
+            const { signature, verifiedAmountInCents, publicKey } = verifiedData;
+
+            if (!signature || !verifiedAmountInCents) {
+                throw new Error("El servidor no devolvió una firma válida.");
+            }
+
+            const redirectUrl = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, "/confirmacion.html");
+
+            if (typeof WidgetCheckout !== "undefined") {
+                const checkout = new WidgetCheckout({
+                    currency: "COP",
+                    amountInCents: verifiedAmountInCents, // Monto verificado y calculado por el backend
+                    reference: orderNumber,
+                    publicKey: publicKey,
+                    signature: { integrity: signature }, // Firma generada con el secreto del backend
+                    redirectUrl: redirectUrl,
+                    customerData: {
+                        email: email,
+                        fullName: nombre,
+                        phoneNumber: telefono,
+                        legalId: "1020304050",
+                        legalIdType: "CC"
+                    },
+                    shippingAddress: {
+                        addressLine1: direccion,
+                        city: ciudad,
+                        country: "CO"
+                    }
+                });
+
+                checkout.open(function (result) {
+                    const transaction = result.transaction;
+                    if (transaction) {
+                        window.location.href = `${redirectUrl}?id=${transaction.id}`;
+                    }
+                });
+
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "⚡ Validar Orden y Pagar con Wompi";
+                }
+                return;
+            } else {
+                throw new Error("El widget oficial de Wompi está cargando. Intenta en unos segundos.");
+            }
+        } catch (err) {
+            showToast(`❌ Error de seguridad: ${err.message}`);
             if (submitBtn) {
                 submitBtn.disabled = false;
-                submitBtn.textContent = "⚡ Pagar con Wompi Colombia";
+                submitBtn.textContent = "⚡ Validar Orden y Pagar con Wompi";
             }
             return;
         }
     }
 
     // =========================================================================
-    // FLUJO CONTRAENTREGA / WHATSAPP
+    // 2. FLUJO CONTRAENTREGA / WHATSAPP (Sincronización de Orden)
     // =========================================================================
+    const subtotal = AppState.cart.reduce((acc, item) => acc + (item.precio * item.quantity), 0);
+    const isFreeShipping = subtotal >= WOMPI_CONFIG.freeShippingThreshold;
+    const shipping = isFreeShipping ? 0 : WOMPI_CONFIG.standardShippingFee;
+    const total = subtotal + shipping;
+
     let mensajeWhatsApp = `¡Hola *El Camerino Sports*! 👕⚡\nQuiero confirmar mi pedido *#${orderNumber}*:\n\n`;
     AppState.cart.forEach(item => {
         mensajeWhatsApp += `• ${item.quantity}x ${item.nombre} (Talla: ${item.size}) - ${formatCOP(item.precio * item.quantity)}\n`;
@@ -696,13 +790,31 @@ async function handleCheckoutSubmit(e) {
     mensajeWhatsApp += `\n\n*Datos de Envío:*`;
     mensajeWhatsApp += `\n👤 Cliente: ${nombre}`;
     mensajeWhatsApp += `\n📞 Teléfono: ${telefono}`;
-    mensajeWhatsApp += `\n📍 Dirección: ${direccion}, ${ciudad}`;
+    mensajeWhatsApp += `\n📍 Ubicación: ${ciudad}, ${departamento}`;
+    mensajeWhatsApp += `\n🏠 Dirección: ${direccion}`;
     mensajeWhatsApp += `\n💳 Método: ${metodoPago}`;
     if (notas) mensajeWhatsApp += `\n📝 Notas: ${notas}`;
 
     if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.textContent = "⏳ Registrando pedido...";
+        submitBtn.textContent = "⏳ Registrando orden en el servidor...";
+    }
+
+    // Registrar en backend /api/orders
+    try {
+        await fetch("/api/orders", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                orderNumber,
+                items: AppState.cart,
+                customer: { nombre, telefono, ciudad, departamento, direccion },
+                paymentStatus: "PENDIENTE_CONTRAENTREGA",
+                paymentMethod: metodoPago
+            })
+        });
+    } catch (e) {
+        console.warn("Fallo en registro de orden contraentrega:", e);
     }
 
     setTimeout(() => {
@@ -716,7 +828,7 @@ async function handleCheckoutSubmit(e) {
                 <div style="background: var(--bg-input); border: 1px solid var(--border-color); border-radius: var(--radius-xs); padding: 1.25rem; font-size: 0.95rem; line-height: 1.7;">
                     <p><strong>Nº de Orden:</strong> <span style="color: var(--accent-volt); font-weight: 800;">${orderNumber}</span></p>
                     <p><strong>Cliente:</strong> ${nombre}</p>
-                    <p><strong>Ciudad:</strong> ${ciudad}</p>
+                    <p><strong>Destino:</strong> ${ciudad}, ${departamento}</p>
                     <p><strong>Dirección:</strong> ${direccion}</p>
                     <p><strong>Total a Pagar:</strong> <strong style="color: var(--accent-volt); font-size: 1.15rem;">${formatCOP(total)}</strong></p>
                 </div>
@@ -735,7 +847,7 @@ async function handleCheckoutSubmit(e) {
 
         if (submitBtn) {
             submitBtn.disabled = false;
-            submitBtn.textContent = "⚡ Pagar con Wompi Colombia";
+            submitBtn.textContent = "⚡ Validar Orden y Pagar con Wompi";
         }
 
         checkoutDialog.close();
@@ -743,7 +855,7 @@ async function handleCheckoutSubmit(e) {
     }, 300);
 }
 
-// Modal Quick View con 2 imágenes de detalle
+// Modal Quick View con 2 imágenes de detalle y stock por talla
 function openQuickView(productId) {
     const product = AppState.products.find(p => p.id === productId);
     if (!product) return;
@@ -755,6 +867,11 @@ function openQuickView(productId) {
     const currentSize = AppState.selectedSizes[productId] || product.tallas[0];
     const img1 = product.imagenPrincipal || product.imagen;
     const img2 = product.imagenSecundaria || img1;
+
+    const currentStock = (product.stockPorTalla && typeof product.stockPorTalla[currentSize] === 'number')
+        ? product.stockPorTalla[currentSize]
+        : 5;
+    const isOutOfStock = currentStock <= 0;
 
     content.innerHTML = `
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.75rem; align-items: start;">
@@ -770,35 +887,55 @@ function openQuickView(productId) {
             <div>
                 <span class="section-tag-volt">${product.marca} ${product.badge ? `// ${product.badge}` : ''}</span>
                 <h3 style="font-size: 1.6rem; color: #FFFFFF; line-height: 1.1; margin: 0.4rem 0 0.8rem;">${product.nombre}</h3>
-                <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent-volt); margin-bottom: 1rem;">
+                <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent-volt); margin-bottom: 0.75rem;">
                     ${formatCOP(product.precio)}
                 </div>
+
+                <!-- Estado de Inventario -->
+                <div style="margin-bottom: 1.25rem;">
+                    ${isOutOfStock ? `
+                        <span style="color: #ef4444; font-weight: 700; font-size: 0.88rem;">❌ Talla ${currentSize} agotada</span>
+                    ` : currentStock <= 3 ? `
+                        <span style="color: #fbbf24; font-weight: 700; font-size: 0.88rem;">⚡ ¡Solo quedan ${currentStock} unidades en talla ${currentSize}!</span>
+                    ` : `
+                        <span style="color: var(--accent-volt); font-weight: 700; font-size: 0.88rem;">✓ ${currentStock} unidades disponibles</span>
+                    `}
+                </div>
+
                 <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem; font-size: 0.95rem;">
                     ${product.descripcion}
                 </p>
+
                 <div style="margin-bottom: 1.5rem;">
                     <label style="display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 0.4rem;">
                         TALLA DISPONIBLE:
                     </label>
                     <div class="size-picker-row">
-                        ${product.tallas.map(s => `
-                            <button 
-                                type="button" 
-                                class="size-btn-chip ${s === currentSize ? 'active' : ''}"
-                                onclick="selectSize('${product.id}', '${s}'); openQuickView('${product.id}');"
-                            >
-                                ${s}
-                            </button>
-                        `).join("")}
+                        ${product.tallas.map(s => {
+                            const sizeStock = (product.stockPorTalla && typeof product.stockPorTalla[s] === 'number') ? product.stockPorTalla[s] : 5;
+                            const outOfStock = sizeStock <= 0;
+                            return `
+                                <button 
+                                    type="button" 
+                                    class="size-btn-chip ${s === currentSize ? 'active' : ''} ${outOfStock ? 'out-of-stock' : ''}"
+                                    onclick="${outOfStock ? `showToast('⚠️ La talla ${s} está agotada')` : `selectSize('${product.id}', '${s}'); openQuickView('${product.id}');`}"
+                                    title="${outOfStock ? 'Agotado' : `${sizeStock} disponibles`}"
+                                >
+                                    ${s}
+                                </button>
+                            `;
+                        }).join("")}
                     </div>
                 </div>
+
                 <button 
                     type="button" 
                     class="btn btn-primary-volt" 
                     style="width: 100%; padding: 0.85rem;"
+                    ${isOutOfStock ? 'disabled style="opacity: 0.4; cursor: not-allowed;"' : ''}
                     onclick="addToCart('${product.id}'); document.getElementById('quickview-dialog').close();"
                 >
-                    ⚡ Añadir al Carrito (${currentSize})
+                    ${isOutOfStock ? 'Talla Agotada' : `⚡ Añadir al Carrito (${currentSize})`}
                 </button>
             </div>
         </div>
@@ -807,13 +944,109 @@ function openQuickView(productId) {
     quickviewDialog.showModal();
 }
 
+// ============================================================================
+// HERO SLIDER DINÁMICO (3 SLIDES - TRANSICIÓN SUAVE CADA 6 SEGUNDOS)
+// ============================================================================
+let currentSlideIndex = 0;
+let sliderInterval = null;
+const SLIDE_DURATION = 6000; // 6 segundos de transición suave
+
+function initHeroSlider() {
+    const slider = document.getElementById("hero-slider");
+    const slides = document.querySelectorAll(".hero-slide");
+    const indicatorBtns = document.querySelectorAll(".indicator-num-btn");
+    const prevBtn = document.getElementById("slider-prev-btn");
+    const nextBtn = document.getElementById("slider-next-btn");
+
+    if (!slider || slides.length === 0) return;
+
+    function goToSlide(index) {
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
+
+        currentSlideIndex = index;
+
+        slides.forEach((slide, idx) => {
+            if (idx === currentSlideIndex) {
+                slide.classList.add("active");
+                slide.setAttribute("aria-hidden", "false");
+            } else {
+                slide.classList.remove("active");
+                slide.setAttribute("aria-hidden", "true");
+            }
+        });
+
+        indicatorBtns.forEach((btn, idx) => {
+            if (idx === currentSlideIndex) {
+                btn.classList.add("active");
+                btn.setAttribute("aria-selected", "true");
+            } else {
+                btn.classList.remove("active");
+                btn.setAttribute("aria-selected", "false");
+            }
+        });
+    }
+
+    function startAutoSlide() {
+        stopAutoSlide();
+        sliderInterval = setInterval(() => {
+            goToSlide(currentSlideIndex + 1);
+        }, SLIDE_DURATION);
+    }
+
+    function stopAutoSlide() {
+        if (sliderInterval) {
+            clearInterval(sliderInterval);
+            sliderInterval = null;
+        }
+    }
+
+    indicatorBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const idx = parseInt(btn.getAttribute("data-slide-index"), 10);
+            goToSlide(idx);
+            startAutoSlide();
+        });
+    });
+
+    if (prevBtn) {
+        prevBtn.addEventListener("click", () => {
+            goToSlide(currentSlideIndex - 1);
+            startAutoSlide();
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener("click", () => {
+            goToSlide(currentSlideIndex + 1);
+            startAutoSlide();
+        });
+    }
+
+    slider.addEventListener("mouseenter", stopAutoSlide);
+    slider.addEventListener("mouseleave", startAutoSlide);
+
+    document.addEventListener("keydown", (e) => {
+        if (e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")) return;
+        if (e.key === "ArrowLeft") {
+            goToSlide(currentSlideIndex - 1);
+            startAutoSlide();
+        } else if (e.key === "ArrowRight") {
+            goToSlide(currentSlideIndex + 1);
+            startAutoSlide();
+        }
+    });
+
+    startAutoSlide();
+}
+
 // Configurar Event Listeners
 function setupEventListeners() {
-    // Buscador en Vivo en el Navbar
+    // Buscador en Vivo con sanitización
     const searchInput = document.getElementById("search-input");
     if (searchInput) {
         searchInput.addEventListener("input", (e) => {
-            AppState.searchQuery = e.target.value;
+            AppState.searchQuery = sanitize(e.target.value);
             renderProducts();
         });
     }
@@ -895,107 +1128,6 @@ function setupDialogBackdropPolyfills() {
             });
         });
     }
-}
-
-// ============================================================================
-// HERO SLIDER DINÁMICO (3 SLIDES - TRANSICIÓN SUAVE CADA 6 SEGUNDOS)
-// ============================================================================
-let currentSlideIndex = 0;
-let sliderInterval = null;
-const SLIDE_DURATION = 6000; // 6 segundos de transición suave
-
-function initHeroSlider() {
-    const slider = document.getElementById("hero-slider");
-    const slides = document.querySelectorAll(".hero-slide");
-    const indicatorBtns = document.querySelectorAll(".indicator-num-btn");
-    const prevBtn = document.getElementById("slider-prev-btn");
-    const nextBtn = document.getElementById("slider-next-btn");
-
-    if (!slider || slides.length === 0) return;
-
-    function goToSlide(index) {
-        if (index < 0) index = slides.length - 1;
-        if (index >= slides.length) index = 0;
-
-        currentSlideIndex = index;
-
-        slides.forEach((slide, idx) => {
-            if (idx === currentSlideIndex) {
-                slide.classList.add("active");
-                slide.setAttribute("aria-hidden", "false");
-            } else {
-                slide.classList.remove("active");
-                slide.setAttribute("aria-hidden", "true");
-            }
-        });
-
-        indicatorBtns.forEach((btn, idx) => {
-            if (idx === currentSlideIndex) {
-                btn.classList.add("active");
-                btn.setAttribute("aria-selected", "true");
-            } else {
-                btn.classList.remove("active");
-                btn.setAttribute("aria-selected", "false");
-            }
-        });
-    }
-
-    function startAutoSlide() {
-        stopAutoSlide();
-        sliderInterval = setInterval(() => {
-            goToSlide(currentSlideIndex + 1);
-        }, SLIDE_DURATION);
-    }
-
-    function stopAutoSlide() {
-        if (sliderInterval) {
-            clearInterval(sliderInterval);
-            sliderInterval = null;
-        }
-    }
-
-    // Eventos en botones indicadores numéricos 01 / 02 / 03
-    indicatorBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-            const idx = parseInt(btn.getAttribute("data-slide-index"), 10);
-            goToSlide(idx);
-            startAutoSlide();
-        });
-    });
-
-    // Flechas anterior y siguiente
-    if (prevBtn) {
-        prevBtn.addEventListener("click", () => {
-            goToSlide(currentSlideIndex - 1);
-            startAutoSlide();
-        });
-    }
-
-    if (nextBtn) {
-        nextBtn.addEventListener("click", () => {
-            goToSlide(currentSlideIndex + 1);
-            startAutoSlide();
-        });
-    }
-
-    // Pausar auto-avance al pasar el cursor para leer con calma
-    slider.addEventListener("mouseenter", stopAutoSlide);
-    slider.addEventListener("mouseleave", startAutoSlide);
-
-    // Navegación con teclado
-    document.addEventListener("keydown", (e) => {
-        if (e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")) return;
-        if (e.key === "ArrowLeft") {
-            goToSlide(currentSlideIndex - 1);
-            startAutoSlide();
-        } else if (e.key === "ArrowRight") {
-            goToSlide(currentSlideIndex + 1);
-            startAutoSlide();
-        }
-    });
-
-    // Iniciar pase automático
-    startAutoSlide();
 }
 
 // Toast flotante

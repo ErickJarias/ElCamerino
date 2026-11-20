@@ -15,6 +15,8 @@
     <link rel="canonical" href="https://el-camerino.pages.dev/">
 
     <!-- Favicon Oficial Isotipo Volt -->
+    <!-- Favicon Oficial con el Isotipo -->
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
     <!-- Open Graph / Redes Sociales (WhatsApp, Facebook, Instagram) -->
@@ -73,7 +75,7 @@
         <div class="editorial-container nav-wrapper">
             <!-- Logotipo Oficial: Imagen PNG 100% Transparente y Nítida -->
             <a href="index.html" class="brand-logo-official" aria-label="El Camerino Sports - Inicio">
-                <img src="img/logo-el-camerino-transparent.png" alt="El Camerino Sports Logo Oficial" class="brand-logo-img">
+                <img src="img/logo-horizontal-camerino.png" alt="El Camerino Sports Logo Oficial" class="brand-logo-img">
             </a>
 
             <!-- Buscador en Vivo en el Centro -->
@@ -408,7 +410,7 @@
                 <!-- Columna 1: Marca y Propósito -->
                 <div>
                     <a href="index.html" class="brand-logo-official" style="margin-bottom: 1rem;">
-                        <img src="img/logo-el-camerino-transparent.png" alt="El Camerino Sports Logo Oficial" class="brand-logo-img" style="height: 48px;">
+                        <img src="img/logo-horizontal-camerino.png" alt="El Camerino Sports Logo Oficial" class="brand-logo-img" style="height: 48px;">
                     </a>
                     <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6; margin-top: 1rem;">
                         Tienda deportiva líder en Colombia. Especialistas en calzado de futsal, medias de agarre pro grip, uniformes y balones oficiales.
@@ -561,37 +563,60 @@
                     <div class="checkout-form-grid">
                         <div class="form-group full-width">
                             <label for="nombre">Nombre y Apellido *</label>
-                            <input type="text" id="nombre" name="nombre" required placeholder="Ej: Carlos Gómez">
+                            <input type="text" id="nombre" name="nombre" required placeholder="Ej: Carlos Gómez" autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico *</label>
+                            <input type="email" id="email" name="email" required placeholder="correo@ejemplo.com" autocomplete="email">
                         </div>
                         <div class="form-group">
                             <label for="telefono">Teléfono / WhatsApp *</label>
-                            <input type="tel" id="telefono" name="telefono" required placeholder="Ej: 300 123 4567">
+                            <input type="tel" id="telefono" name="telefono" required placeholder="Ej: 300 123 4567" autocomplete="tel">
                         </div>
                         <div class="form-group">
-                            <label for="ciudad">Ciudad en Colombia *</label>
-                            <input type="text" id="ciudad" name="ciudad" required placeholder="Ej: Bogotá, Medellín, Cali...">
+                            <label for="departamento">Departamento en Colombia *</label>
+                            <select id="departamento" name="departamento" required>
+                                <option value="Bogotá D.C." selected>Bogotá D.C.</option>
+                                <option value="Antioquia">Antioquia</option>
+                                <option value="Valle del Cauca">Valle del Cauca</option>
+                                <option value="Atlántico">Atlántico</option>
+                                <option value="Santander">Santander</option>
+                                <option value="Cundinamarca">Cundinamarca</option>
+                                <option value="Bolívar">Bolívar</option>
+                                <option value="Risaralda">Risaralda</option>
+                                <option value="Caldas">Caldas</option>
+                                <option value="Tolima">Tolima</option>
+                                <option value="Huila">Huila</option>
+                                <option value="Nariño">Nariño</option>
+                                <option value="Meta">Meta</option>
+                                <option value="Otro Departamento">Otro Departamento</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ciudad">Ciudad o Municipio *</label>
+                            <input type="text" id="ciudad" name="ciudad" required placeholder="Ej: Bogotá, Medellín, Cali, Barranquilla..." autocomplete="address-level2">
                         </div>
                         <div class="form-group full-width">
-                            <label for="direccion">Dirección de Entrega *</label>
-                            <input type="text" id="direccion" name="direccion" required placeholder="Calle, Carrera, Barrio, Apto">
+                            <label for="direccion">Dirección de Entrega Completa *</label>
+                            <input type="text" id="direccion" name="direccion" required placeholder="Calle, Carrera, Número, Edificio, Apto" autocomplete="street-address">
                         </div>
                         <div class="form-group full-width">
-                            <label for="metodoPago">Método de Pago *</label>
+                            <label for="metodoPago">Método de Pago Seguro *</label>
                             <select id="metodoPago" name="metodoPago" required>
                                 <option value="Wompi Colombia (Bancolombia, Nequi, PSE, Tarjetas)" selected>🇨🇴 Pagar en línea con Wompi (Bancolombia, Nequi, PSE, Tarjetas)</option>
-                                <option value="Pago Contraentrega (Paga al recibir)">💵 Pago Contraentrega</option>
+                                <option value="Pago Contraentrega (Paga al recibir)">💵 Pago Contraentrega en Ciudad Principal</option>
                                 <option value="Transferencia Bancaria / Nequi">📱 Transferencia Directa Nequi / Bancolombia</option>
                             </select>
                         </div>
                         <div class="form-group full-width">
-                            <label for="notas">Notas de entrega (opcional)</label>
-                            <textarea id="notas" name="notas" rows="2" placeholder="Ej: Dejar en portería o timbre..."></textarea>
+                            <label for="notas">Instrucciones de entrega (opcional)</label>
+                            <textarea id="notas" name="notas" rows="2" placeholder="Ej: Dejar en portería o llamar al llegar..."></textarea>
                         </div>
                     </div>
 
                     <div style="margin-top: 1.5rem;">
                         <button type="submit" id="submit-checkout-btn" class="btn btn-primary-volt" style="width: 100%; padding: 0.95rem; font-size: 1.1rem;">
-                            ⚡ Pagar con Wompi Colombia
+                            ⚡ Validar Orden y Pagar con Wompi
                         </button>
                     </div>
                 </form>

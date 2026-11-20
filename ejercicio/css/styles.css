@@ -138,12 +138,18 @@ h1, h2, h3, .brand-logo-text, .pill-tag-volt, .btn, .bento-title, .section-title
 }
 
 .brand-logo-img {
-    height: 48px;
+    height: 46px;
     width: auto;
-    max-width: 170px;
+    max-width: 250px;
     object-fit: contain;
     display: block;
-    filter: drop-shadow(0 0 10px rgba(166, 255, 0, 0.3));
+    filter: drop-shadow(0 0 12px rgba(166, 255, 0, 0.35));
+    transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.brand-logo-img:hover {
+    transform: scale(1.02);
+    filter: drop-shadow(0 0 16px rgba(166, 255, 0, 0.5));
 }
 
 .brand-isotype-svg {
@@ -923,6 +929,32 @@ h1, h2, h3, .brand-logo-text, .pill-tag-volt, .btn, .bento-title, .section-title
     border-color: var(--accent-volt);
     color: #0B0D0E;
     font-weight: 800;
+}
+
+.size-btn-chip.out-of-stock {
+    opacity: 0.35;
+    text-decoration: line-through;
+    cursor: not-allowed;
+    background-color: #0B0D0E;
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
+}
+
+.stock-badge-live {
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: var(--accent-volt);
+    display: block;
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.5px;
+}
+
+.stock-alert-low {
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: #fbbf24;
+    display: block;
+    margin-bottom: 0.6rem;
 }
 
 .btn-card-add {
