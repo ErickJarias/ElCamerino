@@ -549,8 +549,31 @@ function renderCartItems() {
     if (checkoutBtn) checkoutBtn.disabled = false;
 
     const subtotal = AppState.cart.reduce((acc, item) => acc + (item.precio * item.quantity), 0);
-    const shipping = subtotal > 70 ? 0 : 5.00; // Envío gratis a partir de $70
+    const shippingThreshold = 70.00;
+    const shipping = subtotal >= shippingThreshold ? 0 : 5.00; // Envío gratis a partir de $70
     const total = subtotal + shipping;
+
+    // Actualizar barra de progreso de Envío Gratis
+    const progressBox = document.getElementById("shipping-progress-box");
+    const progressMsg = document.getElementById("shipping-progress-msg");
+    const progressPercent = document.getElementById("shipping-progress-percent");
+    const progressFill = document.getElementById("shipping-progress-fill");
+
+    if (progressBox && progressMsg && progressPercent && progressFill) {
+        if (subtotal >= shippingThreshold) {
+            progressMsg.innerHTML = "🎉 ¡Felicidades! Tienes <strong>ENVÍO GRATIS</strong>";
+            progressPercent.textContent = "100%";
+            progressFill.style.width = "100%";
+            progressFill.style.background = "linear-gradient(90deg, #10b981, #22c55e)";
+        } else {
+            const remaining = shippingThreshold - subtotal;
+            const percent = Math.min(100, Math.round((subtotal / shippingThreshold) * 100));
+            progressMsg.innerHTML = `🚚 Te faltan <strong>$${remaining.toFixed(2)}</strong> para <strong>ENVÍO GRATIS</strong>`;
+            progressPercent.textContent = `${percent}%`;
+            progressFill.style.width = `${percent}%`;
+            progressFill.style.background = "linear-gradient(90deg, #eab308, #10b981)";
+        }
+    }
 
     cartItemsContainer.innerHTML = AppState.cart.map(item => `
         <div class="cart-item-row" data-cart-id="${item.cartItemId}">
@@ -768,37 +791,51 @@ function handleCheckoutSubmit(e) {
     mensajeWhatsApp += `\n💳 Método de Pago: ${metodoPago}`;
     if (notas) mensajeWhatsApp += `\n📝 Notas: ${notas}`;
 
-    // Mostrar modal de éxito
-    const checkoutDialog = document.getElementById("checkout-dialog");
-    const successDialog = document.getElementById("order-success-dialog");
-    const orderDetailsEl = document.getElementById("order-success-details");
-    const whatsappBtn = document.getElementById("whatsapp-order-btn");
-
-    if (orderDetailsEl) {
-        orderDetailsEl.innerHTML = `
-            <div class="order-receipt">
-                <p><strong>Nº de Pedido:</strong> <span class="order-id-badge">${orderNumber}</span></p>
-                <p><strong>Cliente:</strong> ${nombre}</p>
-                <p><strong>Entrega en:</strong> ${direccion}, ${ciudad}</p>
-                <p><strong>Total a pagar:</strong> <span class="order-total-price">$${total.toFixed(2)}</span> (${metodoPago})</p>
-                <p><small>Hemos recibido tu solicitud. Puedes enviárnosla directamente a WhatsApp para agilizar el despacho inmediato.</small></p>
-            </div>
-        `;
+    // Feedback táctil y prevención de doble submit (UI/UX Pro Max)
+    const submitBtn = form.querySelector("button[type='submit']");
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "⏳ Procesando pedido...";
     }
 
-    if (whatsappBtn) {
-        const encoded = encodeURIComponent(mensajeWhatsApp);
-        whatsappBtn.href = `https://api.whatsapp.com/send?phone=573000000000&text=${encoded}`;
-    }
+    setTimeout(() => {
+        // Mostrar modal de éxito
+        const checkoutDialog = document.getElementById("checkout-dialog");
+        const successDialog = document.getElementById("order-success-dialog");
+        const orderDetailsEl = document.getElementById("order-success-details");
+        const whatsappBtn = document.getElementById("whatsapp-order-btn");
 
-    // Vaciar carrito
-    AppState.cart = [];
-    saveCart();
-    updateCartBadge();
-    form.reset();
+        if (orderDetailsEl) {
+            orderDetailsEl.innerHTML = `
+                <div class="order-receipt">
+                    <p><strong>Nº de Pedido:</strong> <span class="order-id-badge">${orderNumber}</span></p>
+                    <p><strong>Cliente:</strong> ${nombre}</p>
+                    <p><strong>Entrega en:</strong> ${direccion}, ${ciudad}</p>
+                    <p><strong>Total a pagar:</strong> <span class="order-total-price">$${total.toFixed(2)}</span> (${metodoPago})</p>
+                    <p><small>Hemos recibido tu solicitud. Puedes enviárnosla directamente a WhatsApp para agilizar el despacho inmediato.</small></p>
+                </div>
+            `;
+        }
 
-    checkoutDialog.close();
-    successDialog.showModal();
+        if (whatsappBtn) {
+            const encoded = encodeURIComponent(mensajeWhatsApp);
+            whatsappBtn.href = `https://api.whatsapp.com/send?phone=573000000000&text=${encoded}`;
+        }
+
+        // Vaciar carrito
+        AppState.cart = [];
+        saveCart();
+        updateCartBadge();
+        form.reset();
+
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "✅ Confirmar y Enviar Pedido";
+        }
+
+        checkoutDialog.close();
+        successDialog.showModal();
+    }, 350);
 }
 
 // Publicar nuevo producto en la tienda

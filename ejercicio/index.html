@@ -182,8 +182,21 @@
                 <h3 id="cart-title">🛒 Carrito de Compras</h3>
                 <button type="button" class="btn-close-modal" id="close-cart-btn" aria-label="Cerrar carrito">✕</button>
             </div>
-            <div class="modal-body" id="cart-items-container">
-                <!-- Se inyectan los productos del carrito con JS -->
+            <div class="modal-body">
+                <!-- Barra de progreso para Envío Gratis (Gamificación UX) -->
+                <div class="shipping-progress-box" id="shipping-progress-box">
+                    <div class="shipping-progress-text">
+                        <span id="shipping-progress-msg">🚚 ¡Te faltan $70.00 para ENVÍO GRATIS!</span>
+                        <span id="shipping-progress-percent">0%</span>
+                    </div>
+                    <div class="shipping-progress-bar-bg">
+                        <div class="shipping-progress-bar-fill" id="shipping-progress-fill" style="width: 0%;"></div>
+                    </div>
+                </div>
+
+                <div id="cart-items-container">
+                    <!-- Se inyectan los productos del carrito con JS -->
+                </div>
             </div>
             <div class="modal-footer">
                 <div class="cart-summary-breakdown">
