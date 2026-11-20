@@ -71,19 +71,9 @@
          ========================================================================== -->
     <header class="main-navbar-sticky">
         <div class="editorial-container nav-wrapper">
-            <!-- Logotipo Oficial: Isotipo C Volt/Blanco + EL CAMERINO SPORTS -->
+            <!-- Logotipo Oficial: Imagen 100% Idéntica al Logotipo Cargado -->
             <a href="index.html" class="brand-logo-official" aria-label="El Camerino Sports - Inicio">
-                <svg class="brand-isotype-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <!-- Banda izquierda Volt / Neón (#A6FF00) -->
-                    <path d="M38 18 L24 82 L38 82 L52 18 Z" fill="#A6FF00"/>
-                    <!-- Trazos de la C en Blanco Puro (#FFFFFF) -->
-                    <path d="M50 18 L82 18 L76 36 L58 36 L50 64 L68 64 L62 82 L36 82 L46 38 L54 18 Z" fill="#FFFFFF"/>
-                    <path d="M66 42 L88 42 L82 58 L60 58 Z" fill="#FFFFFF"/>
-                </svg>
-                <div class="brand-naming-group">
-                    <span class="logo-text-camerino">EL CAMERINO</span>
-                    <span class="logo-text-sports">SPORTS</span>
-                </div>
+                <img src="img/logo-el-camerino.jpg" alt="El Camerino Sports Logo Oficial" class="brand-logo-img">
             </a>
 
             <!-- Buscador en Vivo en el Centro -->
@@ -103,8 +93,9 @@
                 <nav aria-label="Navegación principal">
                     <ul class="nav-links-menu">
                         <li><a href="#catalogo">Catálogo</a></li>
-                        <li><a href="#catalogo" onclick="filterByCategory('zapatillas')">Guayos y Zapatillas</a></li>
-                        <li><a href="#catalogo" onclick="filterByCategory('uniformes')">Uniformes</a></li>
+                        <li><a href="#catalogo" onclick="filterByCategory('futbol')">Fútbol & Futsal</a></li>
+                        <li><a href="#catalogo" onclick="filterByCategory('training')">Gym & Training</a></li>
+                        <li><a href="#catalogo" onclick="filterByCategory('running')">Running</a></li>
                         <li><a href="#contacto">Contacto</a></li>
                     </ul>
                 </nav>
@@ -218,13 +209,12 @@
                     </span>
                 </header>
 
-                <!-- Filtros Dinámicos por Disciplina / Categoría Deportiva -->
+                <!-- Filtros Dinámicos por Disciplina: Fútbol, Gym & Training, Running -->
                 <div class="category-filters-row" id="category-filters" role="group" aria-label="Filtro de categorías">
                     <button type="button" class="category-chip-btn active" onclick="filterByCategory('all')">Todos</button>
-                    <button type="button" class="category-chip-btn" onclick="filterByCategory('zapatillas')">👟 Guayos y Zapatillas Futsal</button>
-                    <button type="button" class="category-chip-btn" onclick="filterByCategory('medias')">🧦 Medias Pro Grip</button>
-                    <button type="button" class="category-chip-btn" onclick="filterByCategory('uniformes')">👕 Uniformes y Ropa</button>
-                    <button type="button" class="category-chip-btn" onclick="filterByCategory('accesorios')">⚽ Balones y Accesorios</button>
+                    <button type="button" class="category-chip-btn" onclick="filterByCategory('futbol')">⚽ Fútbol & Futsal</button>
+                    <button type="button" class="category-chip-btn" onclick="filterByCategory('training')">🏋️ Gym & Training</button>
+                    <button type="button" class="category-chip-btn" onclick="filterByCategory('running')">🏃 Running</button>
                 </div>
 
                 <!-- Grilla Interactiva de Productos (4 cols desktop / 2 móvil) -->
@@ -245,48 +235,48 @@
                 </header>
 
                 <div class="bento-grid-3blocks">
-                    <!-- Bloque 1: Futsal y Competición en Cancha Cubierta -->
-                    <a href="#catalogo" onclick="filterByCategory('zapatillas')" class="bento-card bento-card-featured" aria-label="Colección Futsal y Cancha">
+                    <!-- Bloque 1: Fútbol & Futsal -->
+                    <a href="#catalogo" onclick="filterByCategory('futbol')" class="bento-card bento-card-featured" aria-label="Colección Fútbol y Futsal">
                         <img 
                             src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900&auto=format&fit=crop&q=85" 
-                            alt="Guayos y zapatillas de futsal en cancha dura" 
+                            alt="Guayos y zapatillas de futsal en cancha" 
                             class="bento-card-img"
                             loading="lazy"
                         >
                         <div class="bento-card-overlay">
                             <span class="bento-tag">ALTA TRACCIÓN & CONTROL</span>
-                            <h3 class="bento-title">FUTSAL & SPEED</h3>
-                            <span class="bento-link-text">Ver Zapatillas →</span>
+                            <h3 class="bento-title">FÚTBOL & FUTSAL</h3>
+                            <span class="bento-link-text">Ver Colección →</span>
                         </div>
                     </a>
 
-                    <!-- Bloque 2: Uniformes y Competición -->
-                    <a href="#catalogo" onclick="filterByCategory('uniformes')" class="bento-card" aria-label="Colección Uniformes">
+                    <!-- Bloque 2: Gym & Training -->
+                    <a href="#catalogo" onclick="filterByCategory('training')" class="bento-card" aria-label="Colección Gym & Training">
                         <img 
-                            src="https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=900&auto=format&fit=crop&q=85" 
-                            alt="Uniforme de fútbol de alta competición" 
+                            src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=900&auto=format&fit=crop&q=85" 
+                            alt="Entrenamiento funcional y de fuerza" 
                             class="bento-card-img"
                             loading="lazy"
                         >
                         <div class="bento-card-overlay">
-                            <span class="bento-tag">TRANSPIRABILIDAD MICROFIBRA</span>
-                            <h3 class="bento-title">UNIFORMES PRO</h3>
-                            <span class="bento-link-text">Ver Ropa Deportiva →</span>
+                            <span class="bento-tag">POTENCIA & ESTABILIDAD</span>
+                            <h3 class="bento-title">GYM & TRAINING</h3>
+                            <span class="bento-link-text">Ver Colección →</span>
                         </div>
                     </a>
 
-                    <!-- Bloque 3: Medias Pro Grip y Accesorios -->
-                    <a href="#catalogo" onclick="filterByCategory('medias')" class="bento-card" aria-label="Colección Medias Pro Grip">
+                    <!-- Bloque 3: Running -->
+                    <a href="#catalogo" onclick="filterByCategory('running')" class="bento-card" aria-label="Colección Running">
                         <img 
-                            src="https://images.unsplash.com/photo-1582966772680-860e372bb558?w=900&auto=format&fit=crop&q=85" 
-                            alt="Medias antideslizantes de compresión para fútbol" 
+                            src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=900&auto=format&fit=crop&q=85" 
+                            alt="Corredor de asfalto y pista" 
                             class="bento-card-img"
                             loading="lazy"
                         >
                         <div class="bento-card-overlay">
-                            <span class="bento-tag">FIJACIÓN TOTAL SIN AMPOLLAS</span>
-                            <h3 class="bento-title">MEDIAS PRO GRIP</h3>
-                            <span class="bento-link-text">Ver Accesorios →</span>
+                            <span class="bento-tag">AERODINÁMICA & LIGEREZA</span>
+                            <h3 class="bento-title">RUNNING & VELOCIDAD</h3>
+                            <span class="bento-link-text">Ver Colección →</span>
                         </div>
                     </a>
                 </div>
@@ -334,15 +324,7 @@
                 <!-- Columna 1: Marca y Propósito -->
                 <div>
                     <a href="index.html" class="brand-logo-official" style="margin-bottom: 1rem;">
-                        <svg class="brand-isotype-svg" viewBox="0 0 100 100" fill="none" style="height: 32px;" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path d="M38 18 L24 82 L38 82 L52 18 Z" fill="#A6FF00"/>
-                            <path d="M50 18 L82 18 L76 36 L58 36 L50 64 L68 64 L62 82 L36 82 L46 38 L54 18 Z" fill="#FFFFFF"/>
-                            <path d="M66 42 L88 42 L82 58 L60 58 Z" fill="#FFFFFF"/>
-                        </svg>
-                        <div class="brand-naming-group">
-                            <span class="logo-text-camerino" style="font-size: 1.2rem;">EL CAMERINO</span>
-                            <span class="logo-text-sports" style="font-size: 0.8rem;">SPORTS</span>
-                        </div>
+                        <img src="img/logo-el-camerino.jpg" alt="El Camerino Sports Logo" class="brand-logo-img" style="height: 48px;">
                     </a>
                     <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6; margin-top: 1rem;">
                         Tienda deportiva líder en Colombia. Especialistas en calzado de futsal, medias de agarre pro grip, uniformes y balones oficiales.

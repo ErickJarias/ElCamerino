@@ -137,6 +137,16 @@ h1, h2, h3, .brand-logo-text, .pill-tag-volt, .btn, .bento-title, .section-title
     line-height: 1;
 }
 
+.brand-logo-img {
+    height: 52px;
+    width: auto;
+    max-width: 180px;
+    object-fit: contain;
+    mix-blend-mode: screen; /* Integra el fondo negro al 100% con el navbar */
+    filter: drop-shadow(0 0 12px rgba(166, 255, 0, 0.3));
+    display: block;
+}
+
 .brand-isotype-svg {
     height: 40px;
     width: auto;
@@ -558,26 +568,41 @@ h1, h2, h3, .brand-logo-text, .pill-tag-volt, .btn, .bento-title, .section-title
     box-shadow: var(--shadow-card);
 }
 
-/* Imagen de Producto */
-.product-img-box {
+/* Contenedor de Imagen con Efecto Hover Flipper (2 fotos por producto) */
+.product-image-flipper {
     position: relative;
     width: 100%;
-    padding-top: 115%; /* Proporción deportiva */
+    padding-top: 120%; /* Proporción 4:5 vertical deportiva */
     overflow: hidden;
     background-color: #0E1114;
     cursor: pointer;
 }
 
-.product-img-box img {
+.flipper-img {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.product-sport-card:hover .product-img-box img {
+.flipper-img.primary {
+    opacity: 1;
+    z-index: 1;
+}
+
+.flipper-img.secondary {
+    opacity: 0;
+    z-index: 2;
+}
+
+.product-sport-card:hover .flipper-img.secondary {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.product-sport-card:hover .flipper-img.primary {
     transform: scale(1.05);
 }
 
