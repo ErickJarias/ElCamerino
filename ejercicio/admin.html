@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Panel de Administración • El Camerino Sports</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body style="background-color: var(--bg-base); min-height: 100vh; padding: 2rem 1rem;">
+    <div style="max-width: 720px; margin: 0 auto; background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 8px; padding: 2rem;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
+            <a href="index.html" class="brand-logo-official" style="text-decoration: none;">
+                <span class="logo-text-camerino">EL CAMERINO</span>
+                <span class="logo-text-sports">SPORTS</span>
+            </a>
+            <a href="index.html" class="btn btn-secondary-outline" style="font-size: 0.9rem; padding: 0.5rem 1rem;">← Volver a la Tienda</a>
+        </div>
+
+        <h1 style="font-family: var(--font-heading); font-style: italic; font-weight: 800; font-size: 2rem; margin-bottom: 0.5rem; color: #FFFFFF;">
+            GESTIÓN DE PRODUCTOS
+        </h1>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 0.95rem;">
+            Panel interno para publicar guayos, zapatillas, medias antideslizantes, uniformes y balones directamente en el catálogo.
+        </p>
+
+        <form id="admin-add-product-form">
+            <div class="checkout-form-grid">
+                <div class="form-group full-width">
+                    <label for="admin-prod-nombre">Nombre del Producto / Modelo *</label>
+                    <input type="text" id="admin-prod-nombre" required placeholder="Ej: Joma Top Flex Rebound Futsal 2026">
+                </div>
+
+                <div class="form-group">
+                    <label for="admin-prod-categoria">Categoría Deportiva *</label>
+                    <select id="admin-prod-categoria" required>
+                        <option value="zapatillas">👟 Guayos y Zapatillas Futsal</option>
+                        <option value="medias">🧦 Medias Antideslizantes Pro Grip</option>
+                        <option value="uniformes">👕 Uniformes y Ropa Deportiva</option>
+                        <option value="accesorios">⚽ Balones y Accesorios</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="admin-prod-marca">Marca *</label>
+                    <input type="text" id="admin-prod-marca" required placeholder="Ej: Nike, Joma, Adidas, El Camerino">
+                </div>
+
+                <div class="form-group">
+                    <label for="admin-prod-precio">Precio de Venta ($ COP) *</label>
+                    <input type="number" id="admin-prod-precio" step="1000" min="0" required placeholder="Ej: 189900">
+                </div>
+
+                <div class="form-group">
+                    <label for="admin-prod-precio-anterior">Precio Anterior / Comparativo ($ COP)</label>
+                    <input type="number" id="admin-prod-precio-anterior" step="1000" min="0" placeholder="Ej: 229900 (opcional)">
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="admin-prod-tallas">Tallas Disponibles (separadas por coma) *</label>
+                    <input type="text" id="admin-prod-tallas" required placeholder="Ej: 38, 39, 40, 41, 42, 43 o S, M, L, XL">
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="admin-prod-imagen">URL de la Foto Principal *</label>
+                    <input type="url" id="admin-prod-imagen" required placeholder="https://images.unsplash.com/... o enlace de imagen">
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="admin-prod-badge">Etiqueta Especial</label>
+                    <select id="admin-prod-badge">
+                        <option value="">(Ninguna)</option>
+                        <option value="NUEVO">NUEVO</option>
+                        <option value="TOP VENTAS">TOP VENTAS</option>
+                        <option value="PRO LEVEL">PRO LEVEL</option>
+                        <option value="OFERTA">OFERTA</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="admin-prod-desc">Descripción Técnica del Producto</label>
+                    <textarea id="admin-prod-desc" rows="3" placeholder="Suela de caucho antihuella, amortiguación, compresión, tecnología textil..."></textarea>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <button type="submit" class="btn btn-primary-volt" style="width: 100%; padding: 1rem; font-size: 1.1rem;">
+                    ⚡ PUBLICAR PRODUCTO EN EL CAMERINO
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("admin-add-product-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const nombre = document.getElementById("admin-prod-nombre").value.trim();
+            const categoria = document.getElementById("admin-prod-categoria").value;
+            const marca = document.getElementById("admin-prod-marca").value.trim();
+            const precio = parseFloat(document.getElementById("admin-prod-precio").value);
+            const precioAnterior = document.getElementById("admin-prod-precio-anterior").value ? parseFloat(document.getElementById("admin-prod-precio-anterior").value) : null;
+            const tallas = document.getElementById("admin-prod-tallas").value.split(",").map(t => t.trim()).filter(Boolean);
+            const imagen = document.getElementById("admin-prod-imagen").value.trim();
+            const badge = document.getElementById("admin-prod-badge").value || null;
+            const descripcion = document.getElementById("admin-prod-desc").value.trim() || "Equipamiento deportivo oficial El Camerino.";
+
+            const newProduct = {
+                id: "prod-" + Date.now(),
+                nombre,
+                categoria,
+                marca,
+                precio,
+                precioAnterior,
+                tallas,
+                imagen,
+                badge,
+                descripcion
+            };
+
+            const catalog = JSON.parse(localStorage.getItem("el_camerino_catalog") || "[]");
+            catalog.unshift(newProduct);
+            localStorage.setItem("el_camerino_catalog", JSON.stringify(catalog));
+
+            alert("✅ ¡Producto publicado con éxito en la tienda!");
+            window.location.href = "index.html#catalogo";
+        });
+    </script>
+</body>
+</html>

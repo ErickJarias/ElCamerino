@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+    <rect width="100" height="100" rx="20" fill="#0B0D0E"/>
+    <!-- Banda izquierda Verde Volt / Neón (#A6FF00) inclinada -->
+    <path d="M36 20 L24 80 L38 80 L50 20 Z" fill="#A6FF00"/>
+    <!-- Trazos de la C en Blanco Puro (#FFFFFF) -->
+    <path d="M48 20 L74 20 L70 34 L56 34 L50 66 L64 66 L60 80 L36 80 L44 40 L52 20 Z" fill="#FFFFFF"/>
+    <path d="M64 42 L80 42 L76 56 L60 56 Z" fill="#FFFFFF"/>
+</svg>
