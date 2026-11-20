@@ -729,6 +729,14 @@ function openQuickView(productId) {
     dialog.showModal();
 }
 
+// Configuración Wompi Sandbox
+const WOMPI_CONFIG = {
+    publicKey: "pub_test_Q5yDA9xoKdePzhSGeVe9HAeu1w0TVFwa",
+    integritySecret: "test_integrity_b9K5F8hG3jL1mN4pQ7rT2vX6z",
+    currency: "COP",
+    copRate: 4000 // 1 USD = 4.000 COP
+};
+
 // Preparar resumen en el modal de checkout
 function prepareCheckoutSummary() {
     const listEl = document.getElementById("checkout-items-list");
@@ -737,8 +745,9 @@ function prepareCheckoutSummary() {
     const totalEl = document.getElementById("checkout-total");
 
     const subtotal = AppState.cart.reduce((acc, item) => acc + (item.precio * item.quantity), 0);
-    const shipping = subtotal > 70 ? 0 : 5.00;
+    const shipping = subtotal >= 70 ? 0 : 5.00;
     const total = subtotal + shipping;
+    const totalCOP = Math.round(total * WOMPI_CONFIG.copRate);
 
     if (listEl) {
         listEl.innerHTML = AppState.cart.map(item => `
@@ -751,11 +760,11 @@ function prepareCheckoutSummary() {
 
     if (subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
     if (shippingEl) shippingEl.textContent = shipping === 0 ? "¡Gratis!" : `$${shipping.toFixed(2)}`;
-    if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
+    if (totalEl) totalEl.innerHTML = `$${total.toFixed(2)} USD <small style="font-size: 0.95rem; color: var(--accent-primary); font-weight: 700; margin-left: 0.4rem;">(~${totalCOP.toLocaleString('es-CO')} COP)</small>`;
 }
 
 // Manejar confirmación del pedido en el Checkout
-function handleCheckoutSubmit(e) {
+async function handleCheckoutSubmit(e) {
     e.preventDefault();
 
     const form = e.target;
@@ -772,11 +781,106 @@ function handleCheckoutSubmit(e) {
     }
 
     const subtotal = AppState.cart.reduce((acc, item) => acc + (item.precio * item.quantity), 0);
-    const shipping = subtotal > 70 ? 0 : 5.00;
+    const shipping = subtotal >= 70 ? 0 : 5.00;
     const total = subtotal + shipping;
-    const orderNumber = "ORD-" + Math.floor(100000 + Math.random() * 900000);
+    const orderNumber = "CAM-" + Math.floor(100000 + Math.random() * 900000);
 
-    // Preparar mensaje para WhatsApp
+    const submitBtn = form.querySelector("button[type='submit']");
+
+    // =========================================================================
+    // INTEGRACIÓN PASARELA DE PAGOS WOMPI COLOMBIA (SANDBOX)
+    // =========================================================================
+    if (metodoPago.includes("Wompi")) {
+        const amountCOP = Math.round(total * WOMPI_CONFIG.copRate);
+        const amountInCents = amountCOP * 100;
+
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = "⏳ Conectando con Wompi...";
+        }
+
+        // 1. Obtener la firma de integridad del backend
+        let signature = null;
+        let publicKey = WOMPI_CONFIG.publicKey;
+
+        try {
+            const res = await fetch("/api/wompi-signature", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    reference: orderNumber,
+                    amountInCents: amountInCents,
+                    currency: "COP"
+                })
+            });
+            if (res.ok) {
+                const data = await res.json();
+                signature = data.signature;
+                if (data.publicKey) publicKey = data.publicKey;
+            }
+        } catch (err) {
+            console.warn("Endpoint backend no disponible, calculando firma localmente:", err);
+        }
+
+        // Fallback: cálculo de firma criptográfica local con Web Crypto API (SHA-256)
+        if (!signature) {
+            const rawString = `${orderNumber}${amountInCents}COP${WOMPI_CONFIG.integritySecret}`;
+            const encoder = new TextEncoder();
+            const data = encoder.encode(rawString);
+            const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+            signature = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, "0")).join("");
+        }
+
+        // URL absoluta para redirección tras el pago
+        const redirectUrl = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/confirmacion.html');
+
+        if (typeof WidgetCheckout !== "undefined") {
+            const checkout = new WidgetCheckout({
+                currency: 'COP',
+                amountInCents: amountInCents,
+                reference: orderNumber,
+                publicKey: publicKey,
+                signature: { integrity: signature },
+                redirectUrl: redirectUrl,
+                customerData: {
+                    email: 'cliente@elcamerino.co',
+                    fullName: nombre,
+                    phoneNumber: telefono,
+                    legalId: '1020304050',
+                    legalIdType: 'CC'
+                },
+                shippingAddress: {
+                    addressLine1: direccion,
+                    city: ciudad,
+                    country: 'CO'
+                }
+            });
+
+            checkout.open(function (result) {
+                const transaction = result.transaction;
+                if (transaction) {
+                    window.location.href = `${redirectUrl}?id=${transaction.id}`;
+                }
+            });
+
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = "✅ Confirmar y Enviar Pedido";
+            }
+            return;
+        } else {
+            showToast("⚠️ El Widget de Wompi está cargando. Intenta de nuevo en unos segundos.");
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = "✅ Confirmar y Enviar Pedido";
+            }
+            return;
+        }
+    }
+
+    // =========================================================================
+    // FLUJO CONTRAENTREGA / TRANSFERENCIA DIRECTA (WHATSAPP)
+    // =========================================================================
     let mensajeWhatsApp = `¡Hola *El Camerino*! 👕⚽\nQuiero confirmar mi pedido *#${orderNumber}*:\n\n`;
     AppState.cart.forEach(item => {
         mensajeWhatsApp += `• ${item.quantity}x ${item.nombre} (Talla: ${item.size}) - $${(item.precio * item.quantity).toFixed(2)}\n`;
@@ -792,14 +896,12 @@ function handleCheckoutSubmit(e) {
     if (notas) mensajeWhatsApp += `\n📝 Notas: ${notas}`;
 
     // Feedback táctil y prevención de doble submit (UI/UX Pro Max)
-    const submitBtn = form.querySelector("button[type='submit']");
     if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.textContent = "⏳ Procesando pedido...";
     }
 
     setTimeout(() => {
-        // Mostrar modal de éxito
         const checkoutDialog = document.getElementById("checkout-dialog");
         const successDialog = document.getElementById("order-success-dialog");
         const orderDetailsEl = document.getElementById("order-success-details");
