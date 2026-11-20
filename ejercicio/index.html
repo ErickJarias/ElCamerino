@@ -3,178 +3,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tienda deportiva líder en calzado de futsal, medias antideslizantes, uniformes de competición y accesorios deportivos de alto rendimiento.">
-    <title>EL CAMERINO 👕👟 • Tienda Deportiva y Calzado de Futsal</title>
+    <meta name="description" content="EL CAMERINO • Marca deportiva de alto rendimiento. Ropa de compresión, shorts técnicos, leggings seamless y hoodies. Donde empieza el partido.">
+    <title>EL CAMERINO • Sportswear & Rendimiento Puro 2026</title>
     <link rel="stylesheet" href="css/styles.css">
     <!-- Widget Oficial de Pagos Wompi Colombia (Sandbox) -->
     <script type="text/javascript" src="https://checkout.wompi.co/widget.js"></script>
 </head>
 <body>
 
-    <!-- Aviso Superior -->
-    <div class="top-bar-notice">
-        ⚡ ¡ENVÍO GRATIS en compras superiores a $70! Despachos express 24/48 horas 🚚
+    <!-- ==========================================================================
+         1. BARRA DE ANUNCIO SUPERIOR + NAVBAR MINIMALISTA
+         ========================================================================== -->
+    <!-- Cinta superior delgada con mensaje clave -->
+    <div class="top-ticker-bar" role="banner">
+        ENVÍO GRATIS EN COLOMBIA POR COMPRAS SUPERIORES A $180.000 COP ⚡
     </div>
 
-    <!-- Header Principal -->
-    <header class="main-header">
-        <div class="header-container">
-            <a href="#" class="brand-logo" aria-label="Ir al inicio de El Camerino">
-                <span class="brand-icon">👕</span>
+    <!-- Navbar sticky con fondo translúcido (backdrop-blur) -->
+    <header class="main-navbar-sticky">
+        <div class="editorial-container nav-wrapper">
+            <!-- Logo tipográfico a la izquierda -->
+            <a href="#" class="brand-logo-left" aria-label="El Camerino Sportswear - Inicio">
+                <span class="brand-icon" aria-hidden="true">👕</span>
                 <span>EL <span class="brand-accent">CAMERINO</span></span>
             </a>
 
-            <!-- Buscador en Vivo -->
-            <div class="header-search">
-                <span class="search-icon-inside" aria-hidden="true">🔍</span>
-                <input type="search" id="search-input" placeholder="Buscar zapatillas, medias, uniformes, balones..." aria-label="Buscar productos deportivos">
-            </div>
-
-            <!-- Navegación y Carrito -->
-            <div class="header-actions">
-                <ul class="nav-links-desktop">
-                    <li><a href="#catalogo">Catálogo</a></li>
-                    <li><a href="#beneficios">Beneficios</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
+            <!-- 4 Enlaces limpios al centro -->
+            <nav aria-label="Navegación principal">
+                <ul class="nav-center-links">
+                    <li class="nav-link-item"><a href="#destacados">Novedades</a></li>
+                    <li class="nav-link-item"><a href="#colecciones">Hombre</a></li>
+                    <li class="nav-link-item"><a href="#colecciones">Mujer</a></li>
+                    <li class="nav-link-item"><a href="#destacados">Accesorios</a></li>
                 </ul>
+            </nav>
 
-                <button type="button" class="btn-admin-product" id="open-add-product-btn" aria-label="Montar nuevo producto">
-                    <span>➕</span>
-                    <span class="btn-admin-text">Montar Producto</span>
+            <!-- Iconos minimalistas a la derecha: Búsqueda, Perfil y Carrito con contador -->
+            <div class="nav-right-actions">
+                <button type="button" class="nav-action-btn" id="nav-search-btn" title="Buscar producto" aria-label="Buscar producto">
+                    🔍
                 </button>
-
-                <button type="button" class="cart-button" id="cart-toggle-btn" aria-label="Abrir carrito de compras">
+                <button type="button" class="nav-action-btn" id="nav-profile-btn" title="Mi Cuenta" aria-label="Mi Cuenta">
+                    👤
+                </button>
+                <button type="button" class="cart-nav-btn" id="cart-toggle-btn" aria-label="Abrir carrito de compras">
                     <span aria-hidden="true">🛒</span>
                     <span>Carrito</span>
-                    <span class="cart-badge" id="cart-badge" style="display: none;">0</span>
+                    <span class="cart-count-badge" id="cart-badge">0</span>
                 </button>
             </div>
         </div>
     </header>
 
     <main>
-        <!-- Hero Banner Promocional -->
-        <section class="hero-banner">
-            <div class="hero-content">
-                <span class="hero-tag">EL CAMERINO • DONDE EMPIEZA EL PARTIDO</span>
-                <h1 class="hero-title">EQUÍPATE ANTES DEL PITAZO INICIAL</h1>
-                <p class="hero-subtitle">
-                    Zapatillas profesionales de futsal, medias antideslizantes de compresión, uniformes completos y balones reglamentarios. Todo lo que necesitas para saltar a la cancha.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#catalogo" class="btn btn-primary btn-large">🔥 Explorar Catálogo</a>
-                    <button type="button" class="btn btn-secondary btn-large" onclick="document.getElementById('search-input').focus()">
-                        🔍 Buscar Producto
-                    </button>
-                </div>
-            </div>
-        </section>
+        <!-- ==========================================================================
+             2. HERO SECTION A PANTALLA COMPLETA (90vh) - EDITORIAL SPORTSWEAR
+             ========================================================================== -->
+        <section class="editorial-hero" aria-label="Colección 2026 El Camerino">
+            <!-- Fotografía real en alta resolución con iluminación dramática de acción -->
+            <img 
+                src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=1800&auto=format&fit=crop&q=85" 
+                alt="Atleta en entrenamiento de alta intensidad con iluminación editorial dramática" 
+                class="hero-media-bg"
+                loading="eager"
+            >
+            <!-- Degradado sutil para garantizar legibilidad -->
+            <div class="hero-editorial-overlay"></div>
 
-        <!-- Barra de Beneficios y Garantías -->
-        <section class="benefits-bar" id="beneficios" aria-label="Nuestras Garantías">
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <div class="benefit-icon">🚚</div>
-                    <div class="benefit-text">
-                        <h4>Envíos Rápidos</h4>
-                        <p>Despachos a todo el país en 24 a 48 horas.</p>
-                    </div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">🛡️</div>
-                    <div class="benefit-text">
-                        <h4>100% Original</h4>
-                        <p>Garantía directa de marcas líderes mundiales.</p>
-                    </div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">💳</div>
-                    <div class="benefit-text">
-                        <h4>Pago Seguro</h4>
-                        <p>Contraentrega, transferencia y tarjetas.</p>
-                    </div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">🔄</div>
-                    <div class="benefit-text">
-                        <h4>Cambios Fáciles</h4>
-                        <p>Hasta 30 días para cambio de talla sin coste.</p>
+            <div class="editorial-container">
+                <!-- Alineado abajo a la izquierda (Estilo Editorial) -->
+                <div class="hero-editorial-content">
+                    <span class="tag-editorial">COLECCIÓN 2026 // RENDIMIENTO PURO</span>
+                    <h1 class="hero-headline-2lines">
+                        DISEÑADO PARA LA INTENSIDAD.<br>
+                        FORJADO PARA VENCER.
+                    </h1>
+                    <p class="hero-subheadline-1line">
+                        Indumentaria deportiva de alta ingeniería, compresión anatómica y microfibras de secado instantáneo.
+                    </p>
+                    <div class="hero-editorial-actions">
+                        <a href="#destacados" class="btn btn-primary-volt">COMPRAR COLECCIÓN</a>
+                        <a href="#colecciones" class="btn btn-secondary-outline">VER LOOKBOOK</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sección de Catálogo Deportivo con Filtros -->
-        <section class="catalog-section" id="catalogo">
-            <div class="catalog-header">
-                <div class="catalog-title-row">
-                    <h2>Colección Deportiva Oficial</h2>
-                    <span class="products-count" id="products-count">Cargando productos...</span>
-                </div>
-
-                <!-- Filtros por categoría de tienda deportiva -->
-                <div class="category-filters" id="category-filters" role="group" aria-label="Filtro de categorías de productos">
-                    <!-- Los chips se inyectan dinámicamente desde app.js -->
+        <!-- ==========================================================================
+             3. CINTA DE AUTORIDAD / TECNOLOGÍA TEXTIL (TICKER HORIZONTAL)
+             ========================================================================== -->
+        <section class="authority-ticker-section" aria-label="Pilares tecnológicos y de servicio">
+            <div class="editorial-container">
+                <div class="authority-pillars-grid">
+                    <div class="pillar-item">
+                        <span class="pillar-icon" aria-hidden="true">⚡</span>
+                        <span class="pillar-text">TEJIDO 4-WAY STRETCH</span>
+                    </div>
+                    <div class="pillar-item">
+                        <span class="pillar-icon" aria-hidden="true">💧</span>
+                        <span class="pillar-text">SECADO ULTRA RÁPIDO</span>
+                    </div>
+                    <div class="pillar-item">
+                        <span class="pillar-icon" aria-hidden="true">🛡️</span>
+                        <span class="pillar-text">COSTURAS PLANAS ANTI-ROCE</span>
+                    </div>
+                    <div class="pillar-item">
+                        <span class="pillar-icon" aria-hidden="true">🇨🇴</span>
+                        <span class="pillar-text">ENVÍOS A TODO EL PAÍS</span>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Grilla interactiva de productos -->
-            <div class="products-grid" id="products-grid" aria-live="polite">
-                <!-- Se llena mediante JavaScript -->
+        <!-- ==========================================================================
+             4. CUADRÍCULA DE COLECCIONES POR DISCIPLINA (BENTO GRID ASIMÉTRICO)
+             ========================================================================== -->
+        <section class="bento-collections-section" id="colecciones" aria-label="Colecciones por Disciplina">
+            <div class="editorial-container">
+                <header class="section-editorial-header">
+                    <span class="tag-editorial">DISCIPLINAS</span>
+                    <h2 class="section-title-large">DOMINA CADA MOVIMIENTO</h2>
+                </header>
+
+                <div class="bento-grid-3blocks">
+                    <!-- Bloque 1: Tarjeta vertical alta destacada (Gym & Training) -->
+                    <a href="#destacados" class="bento-card bento-card-featured" aria-label="Disciplina Gym & Training">
+                        <img 
+                            src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=900&auto=format&fit=crop&q=85" 
+                            alt="Atleta entrenando fuerza en gimnasio" 
+                            class="bento-card-img"
+                            loading="lazy"
+                        >
+                        <div class="bento-card-overlay">
+                            <span class="bento-tag">ALTA EXIGENCIA & POTENCIA</span>
+                            <h3 class="bento-title">GYM & TRAINING</h3>
+                            <span class="bento-link-text">Ver Colección →</span>
+                        </div>
+                    </a>
+
+                    <!-- Bloque 2: Running -->
+                    <a href="#destacados" class="bento-card" aria-label="Disciplina Running y Velocidad">
+                        <img 
+                            src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=900&auto=format&fit=crop&q=85" 
+                            alt="Corredor en pista urbana al atardecer" 
+                            class="bento-card-img"
+                            loading="lazy"
+                        >
+                        <div class="bento-card-overlay">
+                            <span class="bento-tag">AERODINÁMICA & LIGEREZA</span>
+                            <h3 class="bento-title">RUNNING</h3>
+                            <span class="bento-link-text">Ver Colección →</span>
+                        </div>
+                    </a>
+
+                    <!-- Bloque 3: Essentials / Oversize -->
+                    <a href="#destacados" class="bento-card" aria-label="Disciplina Essentials y Oversize">
+                        <img 
+                            src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=900&auto=format&fit=crop&q=85" 
+                            alt="Atleta con ropa deportiva oversize y estilo contemporáneo" 
+                            class="bento-card-img"
+                            loading="lazy"
+                        >
+                        <div class="bento-card-overlay">
+                            <span class="bento-tag">ESTILO URBANO & RECUPERACIÓN</span>
+                            <h3 class="bento-title">ESSENTIALS / OVERSIZE</h3>
+                            <span class="bento-link-text">Ver Colección →</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             5. GRID DE 'PRODUCTOS DESTACADOS' (4 COLS DESKTOP, 2 EN MÓVIL)
+             ========================================================================== -->
+        <section class="featured-products-section" id="destacados" aria-label="Productos Destacados">
+            <div class="editorial-container">
+                <header class="section-editorial-header">
+                    <span class="tag-editorial">INGENIERÍA TEXTIL 2026</span>
+                    <h2 class="section-title-large">PRODUCTOS DESTACADOS</h2>
+                </header>
+
+                <!-- Grid interactivo con fotos 4:5, hover flip, tags, colores, tallas y quick add -->
+                <div class="products-editorial-grid" id="featured-products-grid">
+                    <!-- Se inyectan dinámicamente con app.js para sincronización 100% con el carrito y Wompi -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             6. BANNER EDITORIAL DE MARCA 50/50 + FOOTER LIMPIO
+             ========================================================================== -->
+        <!-- Banner 50/50 dividido -->
+        <section class="editorial-brand-split" id="tecnologia" aria-label="Manifiesto y Tecnología de Marca">
+            <div class="editorial-container">
+                <div class="split-5050-wrapper">
+                    <!-- Detalle de tela / fotografía macro de alto impacto -->
+                    <div class="split-photo-frame">
+                        <img 
+                            src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1000&auto=format&fit=crop&q=85" 
+                            alt="Textura de tejido técnico deportivo y atleta de alto rendimiento" 
+                            loading="lazy"
+                        >
+                    </div>
+
+                    <!-- Manifiesto corto de marca y botón -->
+                    <div class="split-manifesto-text">
+                        <span class="tag-editorial">NUESTRO MANIFIESTO</span>
+                        <h2 class="manifesto-title">EL RENDIMIENTO NO SE NEGOCIA.</h2>
+                        <p class="manifesto-p">
+                            En <strong>EL CAMERINO</strong> creamos indumentaria deportiva con microfibras elásticas en 4 direcciones, termorregulación activa y costuras planas anti-roce. Cada prenda está diseñada para soportar tus entrenamientos más duros sin comprometer un ápice de estilo editorial contemporáneo.
+                        </p>
+                        <a href="#destacados" class="btn btn-secondary-outline">CONOCE NUESTRA TECNOLOGÍA →</a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer de la Tienda -->
-    <footer class="main-footer" id="contacto">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <a href="#" class="brand-logo">
-                    <span class="brand-icon">👕</span>
-                    <span>EL <span class="brand-accent">CAMERINO</span></span>
-                </a>
-                <p>El Camerino: El vestuario donde te preparas para ganar. Especialistas en zapatillas de futsal, uniformes, medias pro grip y balones oficiales.</p>
-                <p>📍 Envíos nacionales • Atención personalizada</p>
+    <!-- Footer estructurado en 4 columnas con enlaces limpios y pagos seguros -->
+    <footer class="editorial-footer" id="contacto">
+        <div class="editorial-container">
+            <div class="footer-4cols-grid">
+                <!-- Columna 1: Marca y descripción -->
+                <div>
+                    <a href="#" class="brand-logo-left">
+                        <span class="brand-icon" aria-hidden="true">👕</span>
+                        <span>EL <span class="brand-accent">CAMERINO</span></span>
+                    </a>
+                    <p style="color: var(--text-secondary); margin-top: 1.1rem; font-size: 0.95rem; line-height: 1.6;">
+                        Ropa deportiva de alto impacto diseñada en Colombia. Donde empieza el partido y se forja la victoria antes de saltar a la cancha.
+                    </p>
+                    <div style="margin-top: 1.25rem;">
+                        <button type="button" class="btn-admin-product" id="open-add-product-btn" style="background: rgba(16, 185, 129, 0.12); border: 1px solid var(--accent-volt); color: var(--accent-volt); padding: 0.45rem 0.9rem; border-radius: 4px; font-weight: 700; cursor: pointer;">
+                            ➕ Montar Nuevo Producto
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Columna 2: Colecciones -->
+                <div>
+                    <h4 class="footer-col-title">COLECCIONES</h4>
+                    <ul class="footer-nav-list">
+                        <li><a href="#destacados">Novedades 2026</a></li>
+                        <li><a href="#colecciones">Gym & Training</a></li>
+                        <li><a href="#colecciones">Running & Velocidad</a></li>
+                        <li><a href="#colecciones">Essentials / Oversize</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3: Enlaces de Ayuda -->
+                <div>
+                    <h4 class="footer-col-title">AYUDA</h4>
+                    <ul class="footer-nav-list">
+                        <li><a href="javascript:void(0)" onclick="showToast('Guía de Tallas: S (36-38), M (38-40), L (40-42), XL (42-44)')">Guía de tallas</a></li>
+                        <li><a href="javascript:void(0)" onclick="showToast('Cambios y devoluciones: Tienes 30 días calendario sin costo de flete')">Cambios y devoluciones</a></li>
+                        <li><a href="javascript:void(0)" onclick="showToast('Envíos gratis en Colombia por compras superiores a $180.000 COP')">Política de envíos</a></li>
+                        <li><a href="javascript:void(0)" onclick="showToast('Soporte oficial WhatsApp: +57 300 000 0000')">Preguntas frecuentes</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 4: Newsletter con descuento del 10% -->
+                <div>
+                    <h4 class="footer-col-title">CLUB EL CAMERINO</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5;">
+                        Suscríbete y recibe un <strong>10% de descuento</strong> en tu primera compra deportiva.
+                    </p>
+                    <form class="footer-newsletter-form" onsubmit="event.preventDefault(); showToast('🎉 ¡Bienvenido al Club! Tu cupón del 10% OFF es: CAMERINO10'); this.reset();">
+                        <input type="email" class="newsletter-input-clean" placeholder="Tu correo electrónico" required aria-label="Correo para newsletter">
+                        <button type="submit" class="btn btn-primary-volt" style="padding: 0.7rem 1.25rem;">UNIRME</button>
+                    </form>
+                </div>
             </div>
 
-            <div class="footer-col">
-                <h4>Categorías</h4>
-                <ul>
-                    <li><a href="#catalogo" onclick="resetFilters()">Zapatillas Futsal</a></li>
-                    <li><a href="#catalogo">Medias Pro Grip</a></li>
-                    <li><a href="#catalogo">Uniformes y Ropa</a></li>
-                    <li><a href="#catalogo">Balones y Accesorios</a></li>
-                </ul>
+            <!-- Distintivos de pago seguro (Wompi, Bancolombia, PSE, Nequi, Tarjetas) -->
+            <div class="payment-trust-bar">
+                <span style="font-size: 0.9rem; color: var(--text-secondary);">
+                    © 2026 EL CAMERINO SPORTSWEAR. Todos los derechos reservados.
+                </span>
+                <div class="trust-badges-row" aria-label="Medios de pago disponibles">
+                    <span>Pagos Seguros:</span>
+                    <span class="badge-pill-trust">🇨🇴 Wompi</span>
+                    <span class="badge-pill-trust">Bancolombia</span>
+                    <span class="badge-pill-trust">Nequi</span>
+                    <span class="badge-pill-trust">PSE</span>
+                    <span class="badge-pill-trust">Tarjetas Débito / Crédito</span>
+                </div>
             </div>
-
-            <div class="footer-col">
-                <h4>Atención al Cliente</h4>
-                <ul>
-                    <li><a href="#">Guía de Tallas</a></li>
-                    <li><a href="#">Política de Envíos</a></li>
-                    <li><a href="#">Cambios y Devoluciones</a></li>
-                    <li><a href="#">Preguntas Frecuentes</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col footer-newsletter">
-                <h4>Club El Camerino</h4>
-                <p>Suscríbete para recibir lanzamientos exclusivos y 10% de descuento en tu primer pedido.</p>
-                <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('¡Bienvenido al Club El Camerino! 🎉'); this.reset();">
-                    <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo para newsletter">
-                    <button type="submit" class="btn btn-primary">Unirme</button>
-                </form>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <span>© 2026 EL CAMERINO SPORTS. Todos los derechos reservados.</span>
-            <span>⚡ Donde se forja la victoria antes de entrar a la cancha.</span>
         </div>
     </footer>
 
     <!-- ==========================================================================
-         MODALES NATIVOS <dialog> CONFORME A MODERN WEB GUIDANCE
+         MODALES NATIVOS <dialog> CONFORME A MODERN WEB GUIDANCE & WOMPI
          ========================================================================== -->
 
     <!-- 1. Modal Carrito de Compras -->
@@ -185,10 +305,10 @@
                 <button type="button" class="btn-close-modal" id="close-cart-btn" aria-label="Cerrar carrito">✕</button>
             </div>
             <div class="modal-body">
-                <!-- Barra de progreso para Envío Gratis (Gamificación UX) -->
+                <!-- Barra de progreso para Envío Gratis ($180.000 COP) -->
                 <div class="shipping-progress-box" id="shipping-progress-box">
                     <div class="shipping-progress-text">
-                        <span id="shipping-progress-msg">🚚 ¡Te faltan $70.00 para ENVÍO GRATIS!</span>
+                        <span id="shipping-progress-msg">🚚 ¡Te faltan $180.000 COP para ENVÍO GRATIS!</span>
                         <span id="shipping-progress-percent">0%</span>
                     </div>
                     <div class="shipping-progress-bar-bg">
@@ -204,19 +324,19 @@
                 <div class="cart-summary-breakdown">
                     <div class="summary-line">
                         <span>Subtotal:</span>
-                        <strong id="cart-subtotal">$0.00</strong>
+                        <strong id="cart-subtotal">$0 COP</strong>
                     </div>
                     <div class="summary-line">
                         <span>Envío:</span>
-                        <strong id="cart-shipping">$0.00</strong>
+                        <strong id="cart-shipping">$0 COP</strong>
                     </div>
                     <div class="summary-line total">
                         <span>Total:</span>
-                        <strong id="cart-total">$0.00</strong>
+                        <strong id="cart-total">$0 COP</strong>
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary btn-large" id="checkout-btn">
-                    Proceder al Pago 💳
+                <button type="button" class="btn btn-primary-volt btn-large" id="checkout-btn" style="width: 100%;">
+                    Proceder al Pago con Wompi 💳
                 </button>
             </div>
         </div>
@@ -226,20 +346,20 @@
     <dialog id="quickview-dialog" closedby="any" aria-labelledby="quickview-title">
         <div class="modal-card">
             <div class="modal-header">
-                <h3 id="quickview-title">Detalles del Producto</h3>
+                <h3 id="quickview-title">Detalles Técnicos del Producto</h3>
                 <button type="button" class="btn-close-modal" id="close-quickview-btn" aria-label="Cerrar vista rápida">✕</button>
             </div>
             <div class="modal-body" id="quickview-content">
-                <!-- Se inyecta la información detallada con JS -->
+                <!-- Inyectado por JS -->
             </div>
         </div>
     </dialog>
 
-    <!-- 3. Modal de Checkout / Formulario de Envío y Pago -->
+    <!-- 3. Modal de Checkout / Formulario Wompi y Envío -->
     <dialog id="checkout-dialog" closedby="any" aria-labelledby="checkout-title">
         <div class="modal-card">
             <div class="modal-header">
-                <h3 id="checkout-title">Finalizar Pedido</h3>
+                <h3 id="checkout-title">Finalizar Pedido Oficial</h3>
                 <button type="button" class="btn-close-modal" id="close-checkout-btn" aria-label="Cerrar checkout">✕</button>
             </div>
             <div class="modal-body">
@@ -250,15 +370,15 @@
                     </div>
                     <div class="summary-line">
                         <span>Subtotal:</span>
-                        <span id="checkout-subtotal">$0.00</span>
+                        <span id="checkout-subtotal">$0 COP</span>
                     </div>
                     <div class="summary-line">
                         <span>Envío:</span>
-                        <span id="checkout-shipping">$0.00</span>
+                        <span id="checkout-shipping">$0 COP</span>
                     </div>
                     <div class="summary-line total">
                         <span>Total a Pagar:</span>
-                        <strong id="checkout-total">$0.00</strong>
+                        <strong id="checkout-total">$0 COP</strong>
                     </div>
                 </div>
 
@@ -270,33 +390,33 @@
                         </div>
                         <div class="form-group">
                             <label for="telefono">Teléfono / WhatsApp *</label>
-                            <input type="tel" id="telefono" name="telefono" required placeholder="Ej: +57 300 123 4567">
+                            <input type="tel" id="telefono" name="telefono" required placeholder="Ej: 300 123 4567">
                         </div>
                         <div class="form-group">
-                            <label for="ciudad">Ciudad *</label>
+                            <label for="ciudad">Ciudad en Colombia *</label>
                             <input type="text" id="ciudad" name="ciudad" required placeholder="Ej: Bogotá, Medellín, Cali...">
                         </div>
                         <div class="form-group full-width">
                             <label for="direccion">Dirección de Entrega *</label>
-                            <input type="text" id="direccion" name="direccion" required placeholder="Calle, Carrera, Número, Apto">
+                            <input type="text" id="direccion" name="direccion" required placeholder="Calle, Carrera, Edificio, Apto">
                         </div>
                         <div class="form-group full-width">
                             <label for="metodoPago">Método de Pago *</label>
                             <select id="metodoPago" name="metodoPago" required>
-                                <option value="Wompi Colombia (Bancolombia, Nequi, PSE, Tarjetas)" selected>🇨🇴 Pagar en línea con Wompi (Bancolombia, Nequi, PSE, Tarjeta)</option>
-                                <option value="Pago Contraentrega (Paga al recibir)">💵 Pago Contraentrega (Pagas al recibir)</option>
-                                <option value="Transferencia Bancaria / Nequi / Daviplata / Bizum">📱 Transferencia Directa (Nequi / Bancolombia / Bizum)</option>
+                                <option value="Wompi Colombia (Bancolombia, Nequi, PSE, Tarjetas)" selected>🇨🇴 Pagar en línea con Wompi (Bancolombia, Nequi, PSE, Tarjetas)</option>
+                                <option value="Pago Contraentrega (Paga al recibir)">💵 Pago Contraentrega en Ciudad Principal</option>
+                                <option value="Transferencia Bancaria / Nequi / Daviplata">📱 Transferencia Directa (Nequi / Bancolombia)</option>
                             </select>
                         </div>
                         <div class="form-group full-width">
-                            <label for="notas">Instrucciones o notas adicionales (opcional)</label>
-                            <textarea id="notas" name="notas" rows="2" placeholder="Ej: Timbre 302, dejar en portería si no estoy..."></textarea>
+                            <label for="notas">Instrucciones de entrega (opcional)</label>
+                            <textarea id="notas" name="notas" rows="2" placeholder="Ej: Portería, dejar con conserje..."></textarea>
                         </div>
                     </div>
 
                     <div style="margin-top: 1.5rem;">
-                        <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">
-                            ✅ Confirmar y Enviar Pedido
+                        <button type="submit" id="submit-checkout-btn" class="btn btn-primary-volt btn-large" style="width: 100%;">
+                            ⚡ Pagar Pedido con Wompi
                         </button>
                     </div>
                 </form>
@@ -308,30 +428,30 @@
     <dialog id="order-success-dialog" closedby="any" aria-labelledby="order-success-title">
         <div class="modal-card">
             <div class="modal-header">
-                <h3 id="order-success-title">¡Pedido Confirmado! 🎉</h3>
+                <h3 id="order-success-title">¡Pedido Registrado con Éxito! 🎉</h3>
                 <button type="button" class="btn-close-modal" id="close-order-success-btn" aria-label="Cerrar modal de éxito">✕</button>
             </div>
             <div class="modal-body">
-                <span class="order-success-icon">⚽⚡</span>
-                <p>¡Gracias por tu compra en <strong>EL CAMERINO</strong>! Tu pedido ya está registrado en nuestro sistema.</p>
+                <span class="order-success-icon" style="font-size: 3rem; display: block; text-align: center; margin-bottom: 1rem;">⚡👕</span>
+                <p style="text-align: center;">¡Gracias por tu compra en <strong>EL CAMERINO</strong>! Tu pedido ya está registrado en nuestra base de datos.</p>
                 
                 <div id="order-success-details">
                     <!-- Se inyectan los detalles con JS -->
                 </div>
 
                 <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem;">
-                    <a id="whatsapp-order-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn whatsapp-confirm-btn btn-large">
+                    <a id="whatsapp-order-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary-volt btn-large" style="text-align: center; text-decoration: none;">
                         💬 Notificar pedido por WhatsApp
                     </a>
-                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('order-success-dialog').close()">
-                        Seguir Comprando
+                    <button type="button" class="btn btn-secondary-outline" onclick="document.getElementById('order-success-dialog').close()">
+                        Seguir Explorando
                     </button>
                 </div>
             </div>
         </div>
     </dialog>
 
-    <!-- 5. Modal Montar Nuevo Producto (Panel de Gestión) -->
+    <!-- 5. Modal Montar Nuevo Producto (Panel de Gestión Rápida) -->
     <dialog id="add-product-dialog" closedby="any" aria-labelledby="add-product-title">
         <div class="modal-card">
             <div class="modal-header">
@@ -342,72 +462,71 @@
                 <form id="add-product-form">
                     <div class="checkout-form-grid">
                         <div class="form-group full-width">
-                            <label for="prod-nombre">Nombre del Producto *</label>
-                            <input type="text" id="prod-nombre" name="nombre" required placeholder="Ej: Nike Phantom GX Pro Futsal">
+                            <label for="prod-nombre">Nombre de la Prenda / Producto *</label>
+                            <input type="text" id="prod-nombre" name="nombre" required placeholder="Ej: Camiseta de Compresión Dry-Pro">
                         </div>
 
                         <div class="form-group">
-                            <label for="prod-categoria">Categoría *</label>
+                            <label for="prod-categoria">Disciplina *</label>
                             <select id="prod-categoria" name="categoria" required>
-                                <option value="zapatillas">👟 Zapatillas de Futsal</option>
-                                <option value="medias">🧦 Medias y Antideslizantes</option>
-                                <option value="uniformes">👕 Uniformes y Ropa</option>
-                                <option value="accesorios">⚽ Balones y Accesorios</option>
+                                <option value="training">Gym & Training</option>
+                                <option value="running">Running & Velocidad</option>
+                                <option value="essentials">Essentials / Oversize</option>
+                                <option value="accesorios">Accesorios Técnicos</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="prod-marca">Marca *</label>
-                            <input type="text" id="prod-marca" name="marca" required placeholder="Ej: Nike, Adidas, El Camerino, Joma">
+                            <label for="prod-marca">Marca / Línea *</label>
+                            <input type="text" id="prod-marca" name="marca" required value="El Camerino">
                         </div>
 
                         <div class="form-group">
-                            <label for="prod-precio">Precio de Venta ($) *</label>
-                            <input type="number" id="prod-precio" name="precio" step="0.01" min="0" required placeholder="Ej: 85.00">
+                            <label for="prod-precio">Precio COP ($) *</label>
+                            <input type="number" id="prod-precio" name="precio" step="1000" min="0" required placeholder="Ej: 119900">
                         </div>
 
                         <div class="form-group">
                             <label for="prod-precio-anterior">Precio Anterior / Oferta ($)</label>
-                            <input type="number" id="prod-precio-anterior" name="precioAnterior" step="0.01" min="0" placeholder="Ej: 110.00 (opcional)">
+                            <input type="number" id="prod-precio-anterior" name="precioAnterior" step="1000" min="0" placeholder="Ej: 149900 (opcional)">
                         </div>
 
                         <div class="form-group full-width">
                             <label for="prod-tallas">Tallas Disponibles (separadas por coma) *</label>
-                            <input type="text" id="prod-tallas" name="tallas" required placeholder="Ej: 38, 39, 40, 41, 42 o S, M, L, XL">
+                            <input type="text" id="prod-tallas" name="tallas" required value="S, M, L, XL">
                         </div>
 
                         <div class="form-group full-width">
-                            <label>Foto del Producto *</label>
+                            <label>Foto de la Prenda *</label>
                             <div class="image-upload-options">
                                 <input type="file" id="prod-file-input" accept="image/*" class="file-custom-input">
                                 <span class="or-divider">o ingresa una URL:</span>
-                                <input type="url" id="prod-url-input" name="imagenUrl" placeholder="https://ejemplo.com/foto.jpg">
+                                <input type="url" id="prod-url-input" name="imagenUrl" placeholder="https://images.unsplash.com/...">
                             </div>
                             <div id="image-preview-container" class="image-preview-container" style="display: none;">
                                 <img id="image-preview-img" src="" alt="Vista previa" class="image-preview-thumb">
-                                <span id="image-preview-text">Imagen lista para subir</span>
+                                <span id="image-preview-text">Imagen lista para publicar</span>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="prod-badge">Etiqueta Especial</label>
+                            <label for="prod-badge">Etiqueta Técnica</label>
                             <select id="prod-badge" name="badge">
-                                <option value="">(Ninguna)</option>
-                                <option value="Nuevo">Nuevo</option>
-                                <option value="Top Ventas">Top Ventas</option>
-                                <option value="Oferta">Oferta</option>
-                                <option value="Edición Especial">Edición Especial</option>
+                                <option value="COMPRESIÓN ALTA">COMPRESIÓN ALTA</option>
+                                <option value="NUEVO">NUEVO</option>
+                                <option value="4-WAY STRETCH">4-WAY STRETCH</option>
+                                <option value="EDICIÓN LIMITADA">EDICIÓN LIMITADA</option>
                             </select>
                         </div>
 
                         <div class="form-group full-width">
                             <label for="prod-desc">Descripción Técnica</label>
-                            <textarea id="prod-desc" name="descripcion" rows="3" placeholder="Detalles de materiales, suela, ajuste, amortiguación..."></textarea>
+                            <textarea id="prod-desc" name="descripcion" rows="3" placeholder="Composición textil, nivel de compresión, transpirabilidad..."></textarea>
                         </div>
                     </div>
 
-                    <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
-                        <button type="submit" class="btn btn-primary btn-large" style="flex: 1;">
+                    <div style="margin-top: 1.5rem;">
+                        <button type="submit" class="btn btn-primary-volt btn-large" style="width: 100%;">
                             🚀 Publicar Producto en la Tienda
                         </button>
                     </div>
